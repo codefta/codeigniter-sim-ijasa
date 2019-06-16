@@ -14,4 +14,15 @@ class Authentication_model extends CI_Model {
             return FALSE;
         }
     }
+
+    public function check_login_user($username, $password) {
+        $this->db->where(['username' => $username, 'role' => 'User']);
+        return $data = $this->db->get('users')->row_array();
+
+        if (password_verify($password, $data['password'])) {
+            return $data;
+        } else {
+            return FALSE;
+        }
+    }
 }

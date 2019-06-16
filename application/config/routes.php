@@ -49,46 +49,75 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'dashboard';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+/* Admin Routes */
+
+/* Primary */
+$route['admin'] = 'admin/dashboard';
+
 /* Authentication */
-$route['login'] = 'authentication/login';
-$route['logout'] = 'authentication/logout';
+$route['admin/login'] = 'admin/authentication/login';
+$route['admin/logout'] = 'admin/authentication/logout';
 
 /* Jenis Logistik */
-$route['jenis_logistik'] = 'jenis_logistik';
-$route['jenis_logistik/add'] = 'jenis_logistik/add_logistik';
-$route['jenis_logistik/save'] = 'jenis_logistik/insert_logistik';
-$route['jenis_logistik/remove/(:num)'] = 'jenis_logistik/delete_logistik/$1';
-$route['jenis_logistik/edit/(:num)'] = 'jenis_logistik/edit_logistik/$1';
-$route['jenis_logistik/update'] = 'jenis_logistik/update_logistik';
-$route['api/logistik'] = 'jenis_logistik/nama_logistik';
+$route['admin/jenis_logistik'] = 'admin/jenis_logistik';
+$route['admin/jenis_logistik/add'] = 'admin/jenis_logistik/add_logistik';
+$route['admin/jenis_logistik/save'] = 'admin/jenis_logistik/insert_logistik';
+$route['admin/jenis_logistik/remove/(:num)'] = 'admin/jenis_logistik/delete_logistik/$1';
+$route['admin/jenis_logistik/edit/(:num)'] = 'admin/jenis_logistik/edit_logistik/$1';
+$route['admin/jenis_logistik/update'] = 'admin/jenis_logistik/update_logistik';
 
 /* Info Bencana */
-$route['infobencana'] = 'infobencana';
-$route['infobencana/add'] = 'infobencana/add_infobencana';
-$route['infobencana/store'] = 'infobencana/store_infobencana';
-$route['infobencana/destroy/(:num)'] = 'infobencana/destroy_infobencana/$1';
-$route['infobencana/edit/(:num)'] = 'infobencana/edit_infobencana/$1';
+$route['admin/infobencana'] = 'admin/infobencana';
+$route['admin/infobencana/add'] = 'admin/infobencana/add_infobencana';
+$route['admin/infobencana/store'] = 'admin/infobencana/store_infobencana';
+$route['admin/infobencana/destroy/(:num)'] = 'admin/infobencana/destroy_infobencana/$1';
+$route['admin/infobencana/edit/(:num)'] = 'admin/infobencana/edit_infobencana/$1';
+
+/* Validasi Logistik */
+$route['admin/validasi_logistik'] = 'admin/validasi_logistik';
+$route['admin/validasi_logistik/verif/(:num)'] = 'admin/validasi_logistik/validasi/$1';
 
 /* My Profile */
-$route['profil'] = 'profil';
-$route['profil/save'] = 'profil/save_profil';
+$route['admin/profil'] = 'admin/profil';
+$route['admin/profil/save'] = 'admin/profil/save_profil';
 
 /* Users */
-$route['users'] = 'users';
-$route['users/add'] = 'users/add_users';
-$route['users/store'] = 'users/store_users';
-$route['users/show/(:num)'] = 'users/show_users/$1';
+$route['admin/users'] = 'admin/users';
+$route['admin/users/add'] = 'admin/users/add_users';
+$route['admin/users/store'] = 'admin/users/store_users';
+$route['admin/users/show/(:num)'] = 'admin/users/show_users/$1';
 // $route['users/edit/(:num)'] = 'users/edit_users/$1';
-$route['users/save'] = 'users/save_users';
-$route['users/destroy/(:num)'] = 'users/destroy_users/$1';
+$route['admin/users/save'] = 'admin/users/save_users';
+$route['admin/users/destroy/(:num)'] = 'admin/users/destroy_users/$1';
 
 /* Lokasi */
-$route['api/provinsi'] = 'lokasi/daftar_provinsi';
-$route['api/kota'] = 'lokasi/daftar_kota';
-$route['api/kecamatan'] = 'lokasi/daftar_kecamatan';
-$route['api/desa'] = 'lokasi/daftar_desa';
+$route['api/provinsi'] = 'api/lokasi/daftar_provinsi';
+$route['api/kota'] = 'api/lokasi/daftar_kota';
+$route['api/kecamatan'] = 'api/lokasi/daftar_kecamatan';
+$route['api/desa'] = 'api/lokasi/daftar_desa';
+$route['api/logistik'] = 'api/jenis_logistik_api/nama_logistik';
+
+
+/* User Routes */
+
+/* Authentication */
+$route['login'] = 'user/authentication/index';
+$route['login/in'] = 'user/authentication/login';
+$route['register'] = 'user/authentication/register';
+$route['register/store'] = 'user/authentication/store';
+$route['logout'] = 'user/authentication/logout';
+
+
+/* Info bencana */
+$route['infobencana/detail/(:num)'] = 'user/infobencana/show/$1';
+
+/* Donasi logistik */
+$route['donasi/detail/(:num)'] = 'user/donasi_logistik/show/$1';
+$route['donasi/add'] = 'user/donasi_logistik/create';
+$route['donasi/status'] = 'user/donasi_logistik/status';
+
 
