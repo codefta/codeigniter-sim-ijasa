@@ -10,7 +10,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-user">
+            <div class="card card-user shadow border-0">
               <div class="card-header">
                 <h5 class="card-title">Tambah Info Bencana</h5>
               </div>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="col-md-12 pr-3">
                         <div class="text-right">
-                            <a href="<?= base_url('jenis_logistik') ?>" class="btn btn-danger">Batal</a>
+                            <a href="<?= base_url('admin/infobencana') ?>" class="btn btn-danger">Batal</a>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>

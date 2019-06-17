@@ -65,7 +65,7 @@
                         $jenis_logistik = explode(',', $data['logistik']);
                         $jumlah_logistik = explode(',', $data['jumlah_logistik']);
                         foreach($jenis_logistik as $key => $jenis_logistik) {
-                          echo $jenis_logistik.': '.$jumlah_logistik[$key].'<br>';
+                          echo "<b>$jenis_logistik</b>".': '.$jumlah_logistik[$key].' kg/liter'.'<br>';
                         }
                         ?>
                         </td>

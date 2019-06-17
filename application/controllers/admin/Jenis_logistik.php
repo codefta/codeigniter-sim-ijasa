@@ -19,7 +19,8 @@ class Jenis_logistik extends CI_Controller {
     }
 
     public function add_logistik() {
-        $this->load->view('admin/jenis_logistik/add');
+        $data['title'] = 'Jenis Logistik / Tambah';
+        $this->load->view('admin/jenis_logistik/add', $data);
     }
 
     public function insert_logistik() {
@@ -49,6 +50,7 @@ class Jenis_logistik extends CI_Controller {
     }
 
     public function edit_logistik($id) {
+        $data['title'] = 'Jenis Logistik / Ubah';
         $data['logistik'] = $this->jenis_logistik_model->get_jenis_logistik_by($id);
 
         $this->load->view('admin/jenis_logistik/edit', $data);

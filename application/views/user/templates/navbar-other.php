@@ -18,9 +18,9 @@
             <?php if($this->session->has_userdata("user_loggedin")) : ?>
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline"><?= $this->session->userdata('user_loggedin')['nama'] ?></span>
-                  <img class="img-profile rounded-circle" style="width:10%; height:10%" src="<?= base_url().'uploads/foto_profil/'.$this->session->userdata('user_loggedin')['foto'] ?>">
+                  <img class="img-profile rounded-circle" style="width:20px; height:20px" src="<?= base_url().'uploads/foto_profil/'.$this->session->userdata('user_loggedin')['foto'] ?>">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

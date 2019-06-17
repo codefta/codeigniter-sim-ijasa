@@ -80,6 +80,7 @@ $route['admin/infobencana/edit/(:num)'] = 'admin/infobencana/edit_infobencana/$1
 /* Validasi Logistik */
 $route['admin/validasi_logistik'] = 'admin/validasi_logistik';
 $route['admin/validasi_logistik/verif/(:num)'] = 'admin/validasi_logistik/validasi/$1';
+$route['admin/validasi_logistik/show/(:num)'] = 'admin/validasi_logistik/show_validasi/$1';
 
 /* My Profile */
 $route['admin/profil'] = 'admin/profil';

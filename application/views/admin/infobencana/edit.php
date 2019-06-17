@@ -1,10 +1,12 @@
-<?php $this->load->view('templates/header') ?>
-  
-  <!-- Sidebar -->
-  <?php $this->load->view('templates/sidebar') ?>
-  
-    <!-- Navbar -->
-    <?php $this->load->view('templates/navbar') ?>
+<?php $this->load->view('admin/templates/header') ?>
+
+<!-- Sidebar -->
+<?php $this->load->view('admin/templates/sidebar') ?>
+<!-- End of Sidebar -->
+
+<!-- Navbar -->
+<?php $this->load->view('admin/templates/navbar') ?>
+<!-- End Navbar -->
 
         <div class="row">
           <div class="col-md-12">
@@ -158,11 +160,13 @@
           </div>
         </div>
       </div>
-         <!-- Footer -->
-    <?php $this->load->view('templates/footer') ?>
-    <!--   Core JS Files   -->
-    <?php $this->load->view('templates/js') ?>
+<!-- Footer -->
+<?php $this->load->view('admin/templates/footer') ?>
 
+<!-- Logout Modal-->
+<?php $this->load->view('admin/templates/logout') ?>
+<!--   Core JS Files   -->
+<?php $this->load->view('admin/templates/js') ?>
 
     <!-- Additional JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
@@ -308,4 +312,4 @@
       });
     </script>
     
-<?php $this->load->view('templates/ender') ?>
+<?php $this->load->view('admin/templates/ender') ?>

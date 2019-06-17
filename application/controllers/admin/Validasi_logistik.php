@@ -23,7 +23,8 @@ class Validasi_logistik extends CI_Controller {
 
     public function validasi($id) {
         $data = [
-            'status' => 1
+            'status' => 1,
+            'tgl_verifikasi' => date('Y-m-d H:i:s')
         ];
 
         $validasi = $this->validasi_logistik_model->verif_validasi_logistik($data, $id);
@@ -33,5 +34,13 @@ class Validasi_logistik extends CI_Controller {
         } else {
             redirect(base_url('admin/validasi_logistik'));
         }
+    }
+
+    public function show_validasi($id) {
+        $data['donasi_logistik'] = $this->validasi_logistik_model->get_validasi_logistik_by_id($id);
+        $data['jenis_logistik'] = $this->validasi_logistik_model->get_jenis_logistik_donasi_by_id($id);
+        
+        $data['title'] = 'Validasi Logistik / Detail';
+        $this->load->view('admin/validasi_logistik/show', $data);
     }
 }

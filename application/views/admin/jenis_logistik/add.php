@@ -9,7 +9,7 @@
 
         <div class="row">
           <div class="col-md-8">
-            <div class="card card-user">
+            <div class="card card-user shadow border-0">
               <div class="card-header">
                 <h5 class="card-title">Tambah Logistik</h5>
               </div>

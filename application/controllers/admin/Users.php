@@ -19,13 +19,15 @@ class Users extends CI_Controller {
     }
     
     public function show_users($id) {
+        $data['title'] = 'Manajemen Akun / Detail';
         $data['user'] = $this->users_model->get_users_id($id);
 
         $this->load->view('admin/users/show', $data);
     }
 
     public function add_users() {
-        $this->load->view('admin/users/add');
+        $data['title'] = 'Manajemen Akun / Tambah';
+        $this->load->view('admin/users/add', $data);
 
     }
 

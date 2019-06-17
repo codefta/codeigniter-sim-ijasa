@@ -10,7 +10,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <div class="card text-center">
+            <div class="card text-center border-0 shadow">
               <div class="card-body mt-5">
                 <div class="author">
                   <!-- <a href="#"> -->
@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <div class="card card-user">
+            <div class="card card-user border-0 shadow">
               <div class="card-header">
                 <a href="<?= base_url('admin/users') ?>" class="btn btn-danger float-right btn-round">Kembali</a>
                 <h5 class="card-title">Ubah Profil</h5>

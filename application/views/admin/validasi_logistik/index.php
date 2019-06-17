@@ -56,10 +56,14 @@
                           <td>
                             <div class="row">
                               <div class="col-md-6">
-                                <a class="btn btn-success pr-3 pl-3" href="<?= base_url('admin/validasi_logistik/verif/').$data['id'] ?>"><i class="fas fa-check"></i></i></a>
+                               <?php if($data['status'] == 1) : ?>
+                                <button class="btn btn-secondary pr-3 pl-3" disabled="disabled"><i class="fas fa-check"></i></i></button>
+                              <?php else: ?> 
+                                <a class="btn btn-success pr-3 pl-3"  href="<?= base_url('admin/validasi_logistik/verif/').$data['id'] ?>"><i class="fas fa-check"></i></i></a>
+                              <?php endif ?> 
                               </div>
                               <div class="col-md-6">
-                                <a  class="btn btn-info pr-3 pl-3" href="<?= base_url('admin/users/destroy/').$data['id'] ?>"><i class="fas fa-info"></i></a>
+                                <a  class="btn btn-info pr-3 pl-3" href="<?= base_url('admin/validasi_logistik/show/').$data['id'] ?>"><i class="fas fa-info"></i></a>
                               </div>
                             </div>  
                           </td>

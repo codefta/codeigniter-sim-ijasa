@@ -22,6 +22,7 @@ class Infobencana extends CI_Controller {
     }
 
     public function add_infobencana() {
+        $data['title'] = 'Info Bencana / Tambah';
         $data['provinsi'] = $this->lokasi_model->get_provinsi();
         $data['logistik'] = $this->jenis_logistik_model->get_jenis();
         $this->load->view('admin/infobencana/add', $data);
@@ -84,6 +85,7 @@ class Infobencana extends CI_Controller {
     }
 
     public function edit_infobencana($id) {
+        $data['title'] = 'Info Bencana / Ubah';
         $data['provinsi'] = $this->lokasi_model->get_provinsi();
         $data['kota'] = $this->lokasi_model->get_kota_all();
         $data['kecamatan'] = $this->lokasi_model->get_kecamatan_all();
@@ -91,7 +93,7 @@ class Infobencana extends CI_Controller {
 
         $data['infobencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
 
-        $this->load->view('infobencana/edit', $data);
+        $this->load->view('admin/infobencana/edit', $data);
     }
 
     public function save_infobencana() {
