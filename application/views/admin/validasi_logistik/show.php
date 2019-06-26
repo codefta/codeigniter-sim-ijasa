@@ -78,7 +78,7 @@
             </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
 
 <!-- Footer -->
 <?php $this->load->view('admin/templates/footer') ?>

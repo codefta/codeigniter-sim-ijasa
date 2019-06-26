@@ -76,6 +76,8 @@ $route['admin/infobencana/add'] = 'admin/infobencana/add_infobencana';
 $route['admin/infobencana/store'] = 'admin/infobencana/store_infobencana';
 $route['admin/infobencana/destroy/(:num)'] = 'admin/infobencana/destroy_infobencana/$1';
 $route['admin/infobencana/edit/(:num)'] = 'admin/infobencana/edit_infobencana/$1';
+$route['admin/infobencana/lihat_kebutuhan/(:num)'] = 'admin/infobencana/kebutuhan_bencana/$1';
+$route['admin/infobencana/lihat_korban/(:num)'] = 'admin/infobencana/korban_bencana/$1';
 
 /* Validasi Logistik */
 $route['admin/validasi_logistik'] = 'admin/validasi_logistik';
@@ -101,6 +103,17 @@ $route['api/kota'] = 'api/lokasi/daftar_kota';
 $route['api/kecamatan'] = 'api/lokasi/daftar_kecamatan';
 $route['api/desa'] = 'api/lokasi/daftar_desa';
 $route['api/logistik'] = 'api/jenis_logistik_api/nama_logistik';
+$route['api/logistik/update'] = 'api/jenis_logistik_api/nama_logistik_update';
+
+/* Statistik */
+// Donatur
+$route['admin/statistik/donatur'] = 'admin/statistik/donatur';
+$route['admin/statistik/donasi'] = 'admin/statistik/donasi';
+$route['admin/statistik/infobencana'] = 'admin/statistik/infobencana';
+$route['admin/statistik/kebutuhan'] = 'admin/statistik/kebutuhan';
+
+/* SPK */
+$route['admin/spk'] = 'admin/spk/prioritas';
 
 
 /* User Routes */
@@ -115,6 +128,12 @@ $route['logout'] = 'user/authentication/logout';
 
 /* Info bencana */
 $route['infobencana/detail/(:num)'] = 'user/infobencana/show/$1';
+
+/* User Profile */
+$route['profil'] = 'user/profil/show_profil';
+$route['profil/save'] = 'user/profil/save_profil';
+$route['profil/password'] = 'user/profil/change_password';
+$route['profil/password/save'] = 'user/profil/save_password';
 
 /* Donasi logistik */
 $route['donasi/detail/(:num)'] = 'user/donasi_logistik/show/$1';

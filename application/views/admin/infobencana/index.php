@@ -38,6 +38,7 @@
                       <th>Lokasi</th>
                       <th>Deskripsi</th>
                       <th>Kebutuhan Bencana</th>
+                      <th>Korban Bencana</th>
                       <th>Foto</th>
                       <th>Aksi</th>
                     </tr>
@@ -49,6 +50,7 @@
                       <th>Lokasi</th>
                       <th>Deskripsi</th>
                       <th>Kebutuhan Bencana</th>
+                      <th>Korban Bencana</th>
                       <th>Foto</th>
                       <th>Aksi</th>
                     </tr>
@@ -60,13 +62,14 @@
                         <td><?= $data['nama_bencana'] ?></td>
                         <td><?= ucwords(strtolower($data['provinsi'].', '.$data['kota'].', '.$data['kecamatan'].', '.$data['desa'])); ?></td>
                         <td><?= $data['deskripsi'] ?></td>
-                        <td>
-                        <?php 
+                        <td><a href="<?= base_url('admin/infobencana/lihat_kebutuhan/').$data['idbencana'] ?>" class="badge badge-info">Lihat kebutuhan</a>
+                        <td><a href="<?= base_url('admin/infobencana/lihat_korban/').$data['idbencana'] ?>" class="badge badge-info">Lihat korban</a>
+                        <?php /*
                         $jenis_logistik = explode(',', $data['logistik']);
                         $jumlah_logistik = explode(',', $data['jumlah_logistik']);
                         foreach($jenis_logistik as $key => $jenis_logistik) {
                           echo "<b>$jenis_logistik</b>".': '.$jumlah_logistik[$key].' kg/liter'.'<br>';
-                        }
+                        } */
                         ?>
                         </td>
                         <td><img src="<?= base_url("uploads/infobencana/").$data['foto'] ?>" style="width:80px; height:80px"></td>

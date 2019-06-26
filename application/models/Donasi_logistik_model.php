@@ -14,7 +14,7 @@ class Donasi_logistik_model extends CI_Model {
                         ->from('donasi_logistik')
                         ->join('info_bencana', 'info_bencana.id = donasi_logistik.info_bencana_id2')
                         ->where(['user_id' => $user_id])
-                        ->get()->row_array();
+                        ->get()->result_array();
     }
 
     /* Jenis Logistik Donasi */

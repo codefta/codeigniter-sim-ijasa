@@ -15,17 +15,17 @@
                 <h5 class="card-title">Tambah Info Bencana</h5>
               </div>
               <div class="card-body">
-                <form action="<?= base_url('infobencana/store') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('admin/infobencana/store') ?>" method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Nama Info Bencana</label>
+                        <label><b>Nama Info Bencana</b></label>
                         <input type="text" name="nama_bencana" class="form-control" placeholder="Nama info bencana" value="<?= set_value('nama_bencana') ?>">
                         <small class="text-danger"><?= form_error('nama_bencana') ?></small>
                       </div>
                     </div>
                     <div class="col-md-12 pr-3">
-                      <label>Lokasi</label>
+                      <label><b>Lokasi</b></label>
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-md-12 pr-3">
                       <div class="form-group">
-                        <label>Deskripsi Bencana</label>
+                        <label><b>Deskripsi Bencana</b></label>
                         <textarea name="deskripsi_bencana" id="" cols="30" rows="10" class="form-control" placeholder="Silakan isi keterangan"></textarea>
                         <small class="text-danger"><?= form_error('deskripsi_bencana') ?></small>
                       </div>
@@ -74,7 +74,7 @@
                     <div class="col-md-12 pr-3 mb-4">
                         <div class="row">
                           <div class="col-md-12">
-                            <label for="">Foto Bencana</label>
+                            <label for=""><b>Foto Bencana</b></label>
                           </div>
                           <div class="col-md-12">
                             <div class="custom-file">
@@ -83,6 +83,33 @@
                             </div>
                           </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label><b>Korban Bencana</b></label>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="">Laki-laki</label>
+                            <input type="number" name="laki" id="" class="form-control" placeholder="Jumlah">
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="">Perempuan</label>
+                            <input type="number" name="perempuan" id="" class="form-control" placeholder="Jumlah">
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="">Anak-anak</label>
+                            <input type="number" name="anak" id="" class="form-control" placeholder="Jumlah">
+                          </div>
+                        </div>
+
+                      </div>
                     </div>
 
                     <div class="col-md-12" id="logistik_wrapper">

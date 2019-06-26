@@ -31,8 +31,6 @@ class Profil extends CI_Controller {
             'no_hp' => $this->input->post("no_hp"),
             'email' => $this->input->post("email"),
             'username' => $this->input->post('username'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'role' => $this->input->post('role'),
             'foto' => $this->update_photos()
         ];
 

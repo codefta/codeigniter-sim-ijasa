@@ -7,7 +7,7 @@ class Infobencana extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(['lokasi_model', 'jenis_logistik_model', 'infobencana_model', 'logistik_bencana_model']);
+        $this->load->model(['lokasi_model', 'jenis_logistik_model', 'infobencana_model', 'logistik_bencana_model', 'korban_bencana_model']);
 
         if(!$this->session->has_userdata('admin_loggedin')) {
             redirect(base_url('admin/login'));
@@ -20,6 +20,19 @@ class Infobencana extends CI_Controller {
         $data['infobencana'] = $this->logistik_bencana_model->get_logistik_bencana();
         $this->load->view('admin/infobencana/index', $data);
     }
+    
+    public function kebutuhan_bencana($id) {
+        $data['title'] = 'Info Bencana / Kebutuhan Bencana';
+        $data['infobencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
+        $this->load->view('admin/infobencana/kebutuhan_bencana', $data);
+    }
+
+    public function korban_bencana($id) {
+        $data['title'] = 'Info Bencana / Korban Bencana';
+        $data['infobencana'] = $this->korban_bencana_model->get_korban_bencana_id($id);
+
+        $this->load->view('admin/infobencana/korban_bencana', $data);
+    }
 
     public function add_infobencana() {
         $data['title'] = 'Info Bencana / Tambah';
@@ -28,6 +41,7 @@ class Infobencana extends CI_Controller {
         $this->load->view('admin/infobencana/add', $data);
     }
 
+
     public function store_infobencana() {
         $this->form_validation->set_rules('nama_bencana', 'Nama Bencana', 'required');
         $this->form_validation->set_rules('deskripsi_bencana', 'Deskripsi Bencana', 'required');
@@ -35,6 +49,9 @@ class Infobencana extends CI_Controller {
         $this->form_validation->set_rules('kota_id', 'Kota', 'required');
         $this->form_validation->set_rules('kecamatan_id', 'kecamatan', 'required');
         $this->form_validation->set_rules('desa_id', 'Desa', 'required');
+        $this->form_validation->set_rules('anak', 'Anak-anak', 'required');
+        $this->form_validation->set_rules('laki', 'Laki-laki', 'required');
+        $this->form_validation->set_rules('perempuan', 'Perempaun', 'required');
         $this->form_validation->set_rules('jenis_logistik[]', 'Nama Logistik', 'required');
         
         for($i = 0; $i < count($this->input->post('nama_logistik[]')); $i++) {
@@ -44,9 +61,10 @@ class Infobencana extends CI_Controller {
         }
 
         if($this->form_validation->run() === FALSE) {
+            $data['title'] = 'Info Bencana / Tambah';
             $data['provinsi'] = $this->lokasi_model->get_provinsi();
             $data['logistik'] = $this->jenis_logistik_model->get_jenis();
-            $this->load->view('infobencana/add', $data);
+            $this->load->view('admin/infobencana/add', $data);
         } else {
 
             $data_infobencana = [
@@ -61,6 +79,16 @@ class Infobencana extends CI_Controller {
 
             $infobencana_id = $this->infobencana_model->insert_infobencana($data_infobencana);
 
+            $data_korban = [
+                'laki' => $this->input->post('laki'),
+                'perempuan' => $this->input->post('perempuan'),
+                'anak' => $this->input->post('anak'),
+                'info_bencana_id' => $infobencana_id
+            ];
+            
+            $save_korban = $this->korban_bencana_model->insert_korban_bencana($data_korban);
+
+
             for($i=0; $i < count($this->input->post('jenis_logistik')); $i++) {
                 $data[] = [
                     'info_bencana_id' => $infobencana_id,
@@ -68,9 +96,6 @@ class Infobencana extends CI_Controller {
                     'jumlah' => $this->input->post('jumlah_logistik[]')[$i]
                 ];
             }
-
-            // print_r($data);
-            // die();
 
             $store = $this->logistik_bencana_model->insert_logistik_bencana($data);
 
@@ -87,11 +112,11 @@ class Infobencana extends CI_Controller {
     public function edit_infobencana($id) {
         $data['title'] = 'Info Bencana / Ubah';
         $data['provinsi'] = $this->lokasi_model->get_provinsi();
-        $data['kota'] = $this->lokasi_model->get_kota_all();
-        $data['kecamatan'] = $this->lokasi_model->get_kecamatan_all();
-        $data['desa'] = $this->lokasi_model->get_desa_all();
 
-        $data['infobencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
+        $data['logistik'] = $this->jenis_logistik_model->get_jenis();    
+            
+        $data['infobencana'] = $this->infobencana_model->get_infobencana_id($id);
+        $data['logistikbencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
 
         $this->load->view('admin/infobencana/edit', $data);
     }

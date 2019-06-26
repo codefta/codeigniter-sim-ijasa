@@ -34,6 +34,7 @@ class Authentication extends CI_Controller {
                 $this->session->set_userdata('admin_loggedin', $login);
                 redirect(base_url('admin'));
             } else {
+                $this->session->set_flashdata("notif_login_failed", "Username/Password salah");
                 redirect(base_url('admin/authentication'));
             }
         }

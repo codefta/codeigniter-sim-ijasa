@@ -21,8 +21,9 @@ class Logistik_bencana_model extends CI_Model {
         GROUP BY info_bencana_id")->result_array();
     }
 
+
     public function get_logistik_bencana_id($id) {
-        return $this->db->select('jenis_logistik.nama nama_logistik, jenis_logistik.jenis jenis_logistik, sum(logistik_bencana.jumlah) jumlah')
+        return $this->db->select('jenis_logistik.id id_logistik, jenis_logistik.nama nama_logistik, jenis_logistik.jenis jenis_logistik, sum(logistik_bencana.jumlah) jumlah')
                         ->from('logistik_bencana')
                         ->join('jenis_logistik', 'jenis_logistik.id = logistik_bencana.jenis_logistik_id')
                         ->where("info_bencana_id = $id")

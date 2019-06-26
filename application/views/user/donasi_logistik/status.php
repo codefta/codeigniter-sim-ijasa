@@ -23,19 +23,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                          <?php foreach($donasi_logistik as $data) : ?>
                             <tr>
-                                <td><?= $donasi_logistik['tgl_donasi'] ?></td>
-                                <td><?= $donasi_logistik['infobencana'] ?></td>
-                                <td><?= $donasi_logistik['infobencana'] ?></td>
-                                <td><?php if($donasi_logistik['status'] == 1) echo '<span class="text-success">sudah diterima</span>'; else echo '<span class="text-warning">Belum diterima</span>' ?></td>
-                            </tr>
+                                <td><?= $data['tgl_donasi'] ?></td>
+                                <td><?= $data['infobencana'] ?></td>
+                                <td><?= $data['infobencana'] ?></td>
+                                <td><?php if($data['status'] == 1) echo '<span class="text-success">sudah diterima</span>'; else echo '<span class="text-warning">Belum diterima</span>' ?></td>
+                              </tr>
+                          <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
       </div>
-    </div>
+</div>
   </section>
 
   <!-- Footer -->

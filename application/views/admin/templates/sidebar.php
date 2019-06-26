@@ -21,6 +21,36 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+        <div class="sidebar-heading">
+          Sistem Pendukung Keputusan
+        </div>
+
+        <li class="nav-item <?php if($this->uri->segment(2) == 'spk' ) echo 'active'?>">
+          <a class="nav-link" href="<?= base_url("admin/spk") ?>">
+            <i class="fas fa-info-circle"></i>
+            <span>Prioritas Kebutuhan</span></a>
+        </li>
+
+        <div class="sidebar-heading">
+          Sistem Informasi
+        </div>
+
+        <li class="nav-item <?php if($this->uri->segment(2) == 'statistik' ) echo 'active' ?>">
+          <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-chart-pie"></i>
+            <span>Statistik</span>
+          </a>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+              <a class="collapse-item <?php if(current_url() == base_url('admin/statistik/donatur') ) echo 'active' ?>" href="<?= base_url('admin/statistik/donatur') ?>">Laporan Donatur</a>
+              <a class="collapse-item <?php if($this->uri->segment(3) == 'donasi' ) echo 'active' ?>" href="<?= base_url('admin/statistik/donasi') ?>">Laporan Donasi</a>
+              <a class="collapse-item <?php if(current_url() == base_url('admin/statistik/kebutuhan') ) echo 'active' ?>" href="<?= base_url('admin/statistik/kebutuhan') ?>">Laporan Kebutuhan</a>
+              <a class="collapse-item <?php if($this->uri->segment(3) == 'infobencana')   echo 'active' ?>" href="<?= base_url('admin/statistik/infobencana') ?>">Laporan Bencana</a>
+            </div>
+          </div>
+        </li>
+
         <!-- Heading -->
         <div class="sidebar-heading">
           Menu Utama
