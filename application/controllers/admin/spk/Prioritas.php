@@ -13,4 +13,9 @@ class Prioritas extends CI_Controller {
         // $data['infobencana'] = $this->spk_model->get_logistik_bencana();
         $this->load->view('admin/spk/index', $data);
     }
+    
+    public function tambah_fis() {
+        $data['title'] = 'FIS/Tambah';
+        $this->load->view('admin/spk/add_FIS', $data);
+    }
 }
