@@ -18,12 +18,21 @@
             <div class="card-header py-3">
               <div class="row">
                 <div class="col-md-6">
-                  <h6 class="font-weight-bold text-primary">Jumlah Korban Bencana</h6>
+                  <h6 class="font-weight-bold text-primary">pilih nama bencana</h6>
                 </div>
-                <div class="col-md-6">                  
+                <div class="col-md-6">
+                  <div class="float-right">
+                    <a href="<?= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Tambah aturan FIS</a>
+                  </div>
                 </div>
               </div>
-              
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <select name="nama bencana" class="form-control">
+                            <option value="">Pilih nama bencana</option>
+                            </select>
+                          </div>
+                        </div>
             </div>
             <div class="card-body">            
                 
