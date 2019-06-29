@@ -114,6 +114,7 @@ $route['admin/statistik/kebutuhan'] = 'admin/statistik/kebutuhan';
 
 /* SPK */
 $route['admin/spk'] = 'admin/spk/prioritas';
+$route['admin/spk/add_FIS'] = 'admin/spk/prioritas/tambah_fis';
 
 
 /* User Routes */
