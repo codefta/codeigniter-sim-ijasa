@@ -21,9 +21,9 @@
                   <h6 class="font-weight-bold text-primary">Perhitungan Prioritas Barang Donasi</h6>
                 </div>
                 <div class="col-md-6">
-                  <div class="float-right">
+                  <!-- <div class="float-right">
                     <a href="<?= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Aturan FIS</a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
