@@ -76,56 +76,54 @@
                           <div class="col-md-12">
                             <label for="">Foto Bencana</label>
                           </div>
+                          <div class="col-md-12 mb-3">
+                            <img src="<?= base_url().'uploads/infobencana/'.$infobencana['foto'] ?>" alt="">
+                          </div>
                           <div class="col-md-12">
                             <div class="custom-file">
                               <input type="file" name="foto_bencana" class="custom-file-input" id="customFile">
-                              <label class="custom-file-label" for="customFile">Pilih foto</label>
+                              <label class="custom-file-label" for="customFile">Ganti foto</label>
                             </div>
                           </div>
                         </div>
                     </div>
-
-                    <div class="col-md-12" id="logistik_wrapper">
-                      <label>Kebutuhan Logistik</label>
-                      <?php $i = 1; foreach($logistikbencana as $lb) : ?>
+                    <div class="col-md-12">
+                      <label><b>Korban Bencana</b></label>
                       <div class="row">
-                        <div class="col-md-3 pr-3">
+                        <div class="col-md-4">
                           <div class="form-group">
-                            <select name="jenis_logistik[]" id="jenis_logistik" class="form-control">
-                              <option value="">Pilih jenis logistik</option>
-                              <?php foreach($logistik as $l) : ?>
-                                <option value="<?= $l['jenis'] ?>" <?php if($lb['jenis_logistik'] == $l['jenis']) echo 'selected' ?>><?= $l['jenis'] ?></option>
-                              <?php endforeach ?>
-                            </select>
-                            <small class="text-danger"><?= form_error('jenis_logistik[]') ?></small>
+                            <label for="">Laki-laki</label>
+                            <input type="number" name="laki" id="" class="form-control" placeholder="Jumlah" value="<?= $korban_bencana['laki'] ?>">
                           </div>
                         </div>
-                        <div class="col-md-3 pr-3">
+
+                        <div class="col-md-4">
                           <div class="form-group">
-                            <select name="nama_logistik[]" id="nama_logistik<?= $i++; ?>" class="form-control">
-                              <option value="">Pilih nama logistik</option>
-                            </select>
-                            <input type="hidden" value="<?= $lb['id_logistik'] ?>" id="namaLogistikOld">
-                            <small class="text-danger"><?= form_error('nama_logistik[]') ?></small>
+                            <label for="">Perempuan</label>
+                            <input type="number" name="perempuan" id="" class="form-control" placeholder="Jumlah" value="<?= $korban_bencana['perempuan'] ?>">
                           </div>
                         </div>
-                        <div class="col-md-3 pr-3">
+
+                        <div class="col-md-4">
                           <div class="form-group">
-                            <input type="number" name="jumlah_logistik[]" id="" class="form-control" placeholder="Jumlah" value="<?= $lb['jumlah'] ?>">
-                            <small class="text-danger"><?= form_error('jumlah_logistik[]') ?></small>
+                            <label for="">Anak-anak</label>
+                            <input type="number" name="anak" id="" class="form-control" placeholder="Jumlah" value="<?= $korban_bencana['anak'] ?>">
                           </div>
                         </div>
 
                       </div>
-                      <?php endforeach ?>
                     </div>
 
-                    <div class="col-md-12 pr-3">
-                      <div class="row">
+                    <div class="col-md-12" id="logistik_wrapper">
+                      
+                    </div>
+
+                    <div class="col-md-12 pr-3" id="logistik_add_button">
+                        <!-- <div class="row">
                         <div class="col-md-12">
                           <a href="javascript:void(0)" id="addButton" class="badge badge-success">Tambah jenis logistik</a>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="col-md-12 pr-3">
                         <div class="text-right">
@@ -152,96 +150,95 @@
 
     <script>
       $(function() {
-        let maxField = 10;
-        let addButton = $('#addButton');
-        let wrapper = $('#logistik_wrapper');
-        var x = 1;
+        // let maxField = 10;
+        // let addButton = $('#addButton');
+        // let wrapper = $('#logistik_wrapper');
+        // var x = 1;
 
-        $(addButton).click(function() {
-          if(x < maxField) {
-            x++;
-            $(wrapper).append(
-              `<div class="row">
-                <div class="col-md-3 pr-3">
-                  <div class="form-group">
-                    <select name="jenis_logistik[]" id="jenis_logistik`+ x +`" class="form-control">
-                      <option value="">Pilih jenis logistik</option>
-                      <?php foreach($logistik as $data) : ?>
-                        <option value="<?= $data['jenis'] ?>"><?= $data['jenis'] ?></option>
-                      <?php endforeach ?>
-                    </select>
-                    <small class="text-danger"><?= form_error('jenis_logistik[]') ?></small>
-                  </div>
-                </div>
-                <div class="col-md-3 pr-3">
-                  <div class="form-group">
-                    <select name="nama_logistik[]" id="nama_logistik`+ x +`" class="form-control">
-                      <option value="">Pilih nama logistik</option>
-                    </select>
-                    <small class="text-danger"><?= form_error('nama_logistik[]') ?></small>
-                  </div>
-                </div>
-                <div class="col-md-3 pr-3">
-                  <div class="form-group">
-                    <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah">
-                    <small class="text-danger"><?= form_error('jumlah_logistik[]') ?></small>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <a href="javascript:void(0)" id="removeButton" class="badge badge-danger">Hapus</a>
-                </div>
-              </div>`
-            );
+        // $(addButton).click(function() {
+        //   if(x < maxField) {
+        //     x++;
+        //     $(wrapper).append(
+        //       `<div class="row">
+        //         <div class="col-md-3 pr-3">
+        //           <div class="form-group">
+        //             <select name="jenis_logistik[]" id="jenis_logistik`+ x +`" class="form-control">
+        //               <option value="">Pilih jenis logistik</option>
+        //               <?php foreach($logistik as $data) : ?>
+        //                 <option value="<?= $data['jenis'] ?>"><?= $data['jenis'] ?></option>
+        //               <?php endforeach ?>
+        //             </select>
+        //             <small class="text-danger"><?= form_error('jenis_logistik[]') ?></small>
+        //           </div>
+        //         </div>
+        //         <div class="col-md-3 pr-3">
+        //           <div class="form-group">
+        //             <select name="nama_logistik[]" id="nama_logistik`+ x +`" class="form-control">
+        //               <option value="">Pilih nama logistik</option>
+        //             </select>
+        //             <small class="text-danger"><?= form_error('nama_logistik[]') ?></small>
+        //           </div>
+        //         </div>
+        //         <div class="col-md-3 pr-3">
+        //           <div class="form-group">
+        //             <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah">
+        //             <small class="text-danger"><?= form_error('jumlah_logistik[]') ?></small>
+        //           </div>
+        //         </div>
+        //         <div class="col-md-2">
+        //           <a href="javascript:void(0)" id="removeButton" class="badge badge-danger">Hapus</a>
+        //         </div>
+        //       </div>`
+        //     );
 
-            $("#jenis_logistik"+x).change(function() {
-              $.ajax({
-                method: 'POST',
-                url: "<?= base_url('api/logistik') ?>",
-                data: {jenis_logistik: $("#jenis_logistik"+x).val()},
-                dataType: 'json',
-                success: function(response){
-                    $('#nama_logistik'+x).html(response.nama_logistik).show();
-                },
-                error: function(xhr, ajaxOptions, thrownError){
-                      alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
-                    }
-                });
-              });
+        //     $("#jenis_logistik"+x).change(function() {
+        //       $.ajax({
+        //         method: 'POST',
+        //         url: "<?= base_url('api/logistik') ?>",
+        //         data: {jenis_logistik: $("#jenis_logistik"+x).val()},
+        //         dataType: 'json',
+        //         success: function(response){
+        //             $('#nama_logistik'+x).html(response.nama_logistik).show();
+        //         },
+        //         error: function(xhr, ajaxOptions, thrownError){
+        //               alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
+        //             }
+        //         });
+        //       });
+        //   }
+        // });
+
+        // $(wrapper).on('click', '#removeButton', function(e) {
+        //   e.preventDefault();
+        //   $(this).parent('div').parent('.row').remove();
+        //   x--;
+        // })
+
+        // Get Jenis Logistik
+        $.ajax({
+          method: 'POST',
+          url: "<?= base_url('api/logistik/update') ?>",
+          data: {jenis_logistik: $("#jenis_logistik").val()},
+          dataType: 'json',
+          success: function(response){
+              
+              var valueNamaOld = $("#namaLogistikOld").val();
+
+              // console.log(valueNamaOld);
+              // console.log(response);
+
+              nama_log = "<option>Pilih nama logistik</option>";
+              for(let key in response.nama_logistik) {
+                // console.log(response.nama_logistik[key]);
+                selected = key == valueNamaOld ? "selected" : "";
+                nama_log += "<option value='"+key+"'"+selected+">"+response.nama_logistik[key]+"</option>";
+              }
+              // console.log(nama_log);
+              $('#nama_logistik').html(nama_log).show();
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+              alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
           }
-        });
-
-        $(wrapper).on('click', '#removeButton', function(e) {
-          e.preventDefault();
-          $(this).parent('div').parent('.row').remove();
-          x--;
-        })
-
-        $("#jenis_logistik").ready(function() {
-          $.ajax({
-            method: 'POST',
-            url: "<?= base_url('api/logistik/update') ?>",
-            data: {jenis_logistik: $("#jenis_logistik").val()},
-            dataType: 'json',
-            success: function(response){
-                
-                var valueNamaOld = $("#namaLogistikOld").val();
-
-                // console.log(valueNamaOld);
-                // console.log(response);
-
-                nama_log = "<option>Pilih nama logistik</option>";
-                for(let key in response.nama_logistik) {
-                  // console.log(response.nama_logistik[key]);
-                  selected = key == valueNamaOld ? "selected" : "";
-                  nama_log += "<option value='"+key+"'"+selected+">"+response.nama_logistik[key]+"</option>";
-                }
-                // console.log(nama_log);
-                $('#nama_logistik').html(nama_log).show();
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
-            }
-          });
         });
         
         $("#jenis_logistik").change(function() {
@@ -271,6 +268,107 @@
             }
           });
         });
+
+      });
+    </script>
+
+    <script>
+      $(function(){
+
+        $('#provinsi').select2();
+        $('#desa').select2();
+        $('#kecamatan').select2();
+        $('#kota').select2();
+
+        // kota
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo base_url('api/lokasi/daftar_kota_edit') ?>",
+            data: {provinsi: $("#provinsi").val()},
+            dataType: "json",
+            success: function(response){
+                // console.log(response.kota);
+
+                let kota_option = "<option value=''>Pilih kota</option>";
+                let current_kota = <?= $infobencana['kota_id'] ?>;
+                response.kota.forEach(function (item, index){
+                  let selected = "";
+
+                  if(item.id == current_kota){
+                    selected = 'selected';
+                  }
+                  kota_option += "<option "+selected+" value='"+item.id+"'>"+item.name+"</option>";
+                })
+                
+                $("#kota").html(kota_option).show();
+
+                get_kec();
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
+            }
+        });
+
+        // kecamatan
+        // console.log($("#kota").val());
+        function get_kec() {
+          $.ajax({
+              type: 'POST',
+              url: "<?php echo base_url('api/lokasi/daftar_kecamatan_edit') ?>",
+              data: {kota: $("#kota").val()},
+              dataType: "json",
+              success: function(response){
+                  let kec_option = "<option value=''>Pilih kecamatan</option>";
+
+                  let current_kecamatan = <?= $infobencana['kecamatan_id'] ?>;
+
+                  response.kecamatan.forEach(function (item, index){
+                    let selected = "";
+
+                    if(item.id == current_kecamatan){
+                      selected = 'selected';
+                    }
+
+                    kec_option += "<option "+selected+" value='"+item.id+"'>"+item.name+"</option>";
+                  })
+                  
+                  $("#kecamatan").html(kec_option).show();
+                  get_desa();
+              },
+              error: function(xhr, ajaxOptions, thrownError){
+                  alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
+              }
+          });
+        }
+
+        function get_desa() {
+          $.ajax({
+              type: 'POST',
+              url: "<?php echo base_url('api/lokasi/daftar_desa_edit') ?>",
+              data: {kecamatan: $("#kecamatan").val()},
+              dataType: "json",
+              success: function(response){
+                let desa_option = "<option value=''>Pilih desa</option>";
+                let current_desa= <?= $infobencana['desa_id'] ?>;
+
+                response.desa.forEach(function (item, index){
+                  let selected = "";
+
+                  if(item.id == current_desa){
+                    selected = 'selected';
+                  }
+
+                  desa_option += "<option "+selected+" value='"+item.id+"'>"+item.name+"</option>";
+                })
+
+                $("#desa").html(desa_option).show();
+              },
+              error: function(xhr, ajaxOptions, thrownError){
+                  alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
+              }
+          });
+        }
 
       });
     </script>

@@ -18,26 +18,153 @@
             <div class="card-header py-3">
               <div class="row">
                 <div class="col-md-6">
-                  <h6 class="font-weight-bold text-primary">pilih nama bencana</h6>
+                  <h6 class="font-weight-bold text-primary">Perhitungan Prioritas Barang Donasi</h6>
                 </div>
                 <div class="col-md-6">
                   <div class="float-right">
-                    <a href="<?= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Tambah aturan FIS</a>
+                    <a href="<?= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Aturan FIS</a>
                   </div>
                 </div>
               </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <select name="nama bencana" class="form-control">
-                            <option value="">Pilih nama bencana</option>
-                            </select>
-                          </div>
-                        </div>
             </div>
-            <div class="card-body">            
+            <div class="card-body">
+              <form action="">
+                <div class="form-group">
+                  <label for="">Pilih Nama Bencana</label>
+                  <select name="id_bencana" class="form-control">
+                    <option value="">Pilih nama bencana</option>
+                    <?php foreach($infobencana as $item) : ?>
+                      <option value="<?= $item['id'] ?>" <?php if($id_bencana == $item['id']) echo 'selected' ?>><?= $item['nama'] ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
                 
+                <div class="form-group">
+                  <label for="">Pilih Nama Logistik</label>
+                  <select name="id_logistik" class="form-control">
+                    <option value="">Pilih nama logistik</option>
+                    <?php foreach($jenis_logistik as $item) : ?>
+                      <option value="<?= $item['id'] ?>" <?php if($id_logistik == $item['id']) echo 'selected' ?>><?= $item['nama'] ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+
+                <div class="float-right">
+                  <button class="btn btn-success" type="submit">Hitung</button>
+                </div>
+              </form>
             </div>
           </div>
+
+          <?php if(!empty($korban)) : ?>
+          <div class="card shadow mb-4">
+            <div class="card-header">
+              <h6 class="font-weight-bold text-primary">Jumlah Korban dilokasi bencana</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-stripped">
+                  <thead>
+                    <tr class="text-center">
+                      <td><b>Jumlah Anak-anak (BA)</b></td>
+                      <td><b>Jumlah Perempuan (BP)</b></td>
+                      <td><b>Jumlah Laki-laki (BL)</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center">
+                      <td><?= $korban_persen['anak']."% (".$korban['anak']." orang)"?> </td>
+                      <td><?= $korban_persen['laki']."% (".$korban['laki']." orang)"?> </td>
+                      <td><?= $korban_persen['perempuan']."% (".$korban['perempuan']." orang)" ?> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow mb-4">
+            <div class="card-header">
+              <h6 class="font-weight-bold text-primary">Derajat Keanggotaan</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr class="text-center">
+                      <td><b>(BA) Rendah</b></td>
+                      <td><b>(BA) Tinggi</b></td>
+                      <td><b>(BP) Rendah</b></td>
+                      <td><b>(BP) Tinggi</b></td>
+                      <td><b>(BL) Rendah</b></td>
+                      <td><b>(BL) Tinggi</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center">
+                      <td><?= $derajat_rendah['anak'] ?> </td>
+                      <td><?= $derajat_tinggi['anak'] ?> </td>
+                      <td><?= $derajat_rendah['perempuan']?> </td>
+                      <td><?= $derajat_tinggi['perempuan']?> </td>
+                      <td><?= $derajat_rendah['laki'] ?> </td>
+                      <td><?= $derajat_tinggi['laki'] ?> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow mb-4">
+            <div class="card-header">
+              <h6 class="font-weight-bold text-primary">Fuzzy</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr class="text-center">
+                      <td><b>Rule</b></td>
+                      <td><b>Nilai</b></td>
+                      <td><b>Prioritas</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center">
+                      <td><?= 1 ; ?> </td>
+                      <td><?= $rule_fuzzy['1']?></td>
+                      <td><?= $prioritas['1'] ?> </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td><?= 2 ; ?> </td>
+                      <td><?= $rule_fuzzy['2']?></td>
+                      <td><?= $prioritas['2'] ?> </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td><?= 3 ; ?> </td>
+                      <td><?= $rule_fuzzy['3']?></td>
+                      <td><?= $prioritas['3'] ?> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow mb-4">
+            <div class="card-header">
+              <h6 class="font-weight-bold text-primary">Defuzzy</h6>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-2">Hasil</div>
+                  <div class="col-md-2"><?= $defuzzy ?></div>
+                </div>
+            </div>
+          </div>
+
+
+          <?php endif ?>
 
 <!-- Footer -->
 <?php $this->load->view('admin/templates/footer') ?>

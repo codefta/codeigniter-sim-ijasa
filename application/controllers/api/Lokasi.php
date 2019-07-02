@@ -7,20 +7,6 @@ class Lokasi extends CI_Controller {
         $this->load->model('lokasi_model');
     }
 
-    // public function daftar_provinsi() {
-    //     $data = $this->lokasi_model->get_provinsi();
-
-    //     return $this->output
-    //                 ->set_status_header(200)
-    //                 ->set_content_type('application/json', 'utf-8')
-    //                 ->set_output(json_encode(
-    //                     [
-    //                         'status' => 'OK',
-    //                         'data' => $data
-    //                     ]
-    //                 ));
-    // }
-
     public function daftar_kota(){
         $id_provinsi = $this->input->post('provinsi');
         $kota = $this->lokasi_model->get_kota($id_provinsi);
@@ -58,6 +44,60 @@ class Lokasi extends CI_Controller {
         }
         $callback = array('desa' => $daftar);
         echo json_encode($callback);
+    }
+
+    function daftar_kota_edit() {
+        $id_provinsi = $this->input->post('provinsi');
+        $kota = $this->lokasi_model->get_kota($id_provinsi);
+
+        $daftar_kota = [];
+
+        foreach($kota as $item) {
+            array_push($daftar_kota, ['id' => $item['id'], 'name' => $item['name']]);
+        }
+
+        $data = [
+            'kota' => $daftar_kota
+        ];
+
+        echo json_encode($data);
+
+    }
+    
+    function daftar_kecamatan_edit() {
+        $id_kota = $this->input->post('kota');
+        $kecamatan = $this->lokasi_model->get_kecamatan($id_kota);
+
+        $daftar_kec = [];
+
+        foreach($kecamatan as $item) {
+            array_push($daftar_kec, ['id' => $item['id'], 'name' => $item['name']]);
+        }
+
+        $data = [
+            'kecamatan' => $daftar_kec
+        ];
+
+        echo json_encode($data);
+
+    }
+    
+    function daftar_desa_edit() {
+        $id_kec = $this->input->post('kecamatan');
+        $desa = $this->lokasi_model->get_desa($id_kec);
+
+        $daftar_desa = [];
+
+        foreach($desa as $item) {
+            array_push($daftar_desa, ['id' => $item['id'], 'name' => $item['name']]);
+        }
+
+        $data = [
+            'desa' => $daftar_desa
+        ];
+
+        echo json_encode($data);
+
     }
 
 }

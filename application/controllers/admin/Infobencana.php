@@ -116,13 +116,58 @@ class Infobencana extends CI_Controller {
         $data['logistik'] = $this->jenis_logistik_model->get_jenis();    
             
         $data['infobencana'] = $this->infobencana_model->get_infobencana_id($id);
+        $data['korban_bencana'] = $this->korban_bencana_model->get_korban_bencana_id($id);
         $data['logistikbencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
 
         $this->load->view('admin/infobencana/edit', $data);
     }
 
     public function save_infobencana() {
+        for($i = 0; $i < count($this->input->post('nama_logistik[]')); $i++) {
+            $this->form_validation->set_rules('nama_logistik[]', 'Nama Logistik', 'required');
+            $this->form_validation->set_rules('jenis_logistik[]', 'Jenis Logistik', 'required');
+            $this->form_validation->set_rules('jumlah_logistik[]', 'Jumlah Logistik', 'required');
+        }
 
+        $data_infobencana = [
+            'nama' => $this->input->post('nama_bencana'),
+            'deskripsi' => $this->input->post('deskripsi_bencana'),
+            'provinsi_id' => $this->input->post('provinsi_id'),
+            'kota_id' => $this->input->post('kota_id'),
+            'kecamatan_id' => $this->input->post('kecamatan_id'),
+            'desa_id' => $this->input->post('desa_id'),
+            'foto' => $this->_update_photos()
+        ];
+
+        $infobencana_id = $this->infobencana_model->update_infobencana($data_infobencana);
+
+        $data_korban = [
+            'laki' => $this->input->post('laki'),
+            'perempuan' => $this->input->post('perempuan'),
+            'anak' => $this->input->post('anak'),
+            'info_bencana_id' => $infobencana_id
+        ];
+        
+        $save_korban = $this->korban_bencana_model->update_korban_bencana($data_korban);
+
+
+        for($i=0; $i < count($this->input->post('jenis_logistik')); $i++) {
+            $data[] = [
+                'info_bencana_id' => $infobencana_id,
+                'jenis_logistik_id' => $this->input->post('nama_logistik[]')[$i],
+                'jumlah' => $this->input->post('jumlah_logistik[]')[$i]
+            ];
+        }
+
+        $store = $this->logistik_bencana_model->update_logistik_bencana($data);
+
+        if($store) {
+            $this->session->set_flashdata('notif_infobencana', 'Anda telah berhasil menambah info bencana');
+            redirect(base_url('admin/infobencana'));
+        } else {
+            $this->session->set_flashdata('notif_infobencana', 'Anda gagal menambah info bencana');
+            redirect(base_url('admin/infobencana'));
+        }
     }
 
     public function destroy_infobencana($id) {
@@ -145,16 +190,16 @@ class Infobencana extends CI_Controller {
     }
 
     private function _update_photos() {
-        $config['upload_path'] = FCPATH.'uploads/foto_profil/';
+        $config['upload_path'] = FCPATH.'uploads/infobencana/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['file_name'] = $this->input->post('username').time();
+        $config['file_name'] = $this->input->post('nama_bencana').time();
 
         $this->load->library('upload', $config);
 
         $this->upload->initialize($config);
 
         if($this->upload->do_upload('foto')) {
-            if($this->input->post('old_photo') != 'profil_default.png'){
+            if($this->input->post('old_photo') != 'bencana_default.png'){
                 unlink(FCPATH.'uploads/foto_profil/'. $this->input->post('old_photo'));
             }
 

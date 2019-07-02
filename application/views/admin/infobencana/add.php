@@ -113,7 +113,7 @@
                     </div>
 
                     <div class="col-md-12" id="logistik_wrapper">
-                      <label>Kebutuhan Logistik</label>
+                      <label><b>Kebutuhan Logistik</b></label>
                       <div class="row">
                         <!-- <div> -->
                         <div class="col-md-3 pr-3">
