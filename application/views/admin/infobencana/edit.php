@@ -15,7 +15,8 @@
                 <h5 class="card-title">Sunting Info Bencana</h5>
               </div>
               <div class="card-body">
-                <form action="<?= base_url('infobencana/store') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('admin/infobencana/save') ?>" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id_bencana" value="<?= $infobencana['id'] ?>">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -77,13 +78,14 @@
                             <label for="">Foto Bencana</label>
                           </div>
                           <div class="col-md-12 mb-3">
-                            <img src="<?= base_url().'uploads/infobencana/'.$infobencana['foto'] ?>" alt="">
+                            <img src="<?= base_url().'uploads/infobencana/'.$infobencana['foto'] ?>" alt="" style="height: 250px; width:100%;">
                           </div>
                           <div class="col-md-12">
                             <div class="custom-file">
                               <input type="file" name="foto_bencana" class="custom-file-input" id="customFile">
                               <label class="custom-file-label" for="customFile">Ganti foto</label>
                             </div>
+                            <input type="hidden" name="old_photo" value="<?= $infobencana['foto'] ?>">
                           </div>
                         </div>
                     </div>
@@ -119,12 +121,8 @@
                     </div>
 
                     <div class="col-md-12 pr-3" id="logistik_add_button">
-                        <!-- <div class="row">
-                        <div class="col-md-12">
-                          <a href="javascript:void(0)" id="addButton" class="badge badge-success">Tambah jenis logistik</a>
-                        </div>
-                      </div> -->
                     </div>
+
                     <div class="col-md-12 pr-3">
                         <div class="text-right">
                             <a href="<?= base_url('jenis_logistik') ?>" class="btn btn-danger">Batal</a>

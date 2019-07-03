@@ -76,7 +76,7 @@ class Prioritas extends CI_Controller {
 
             $data['rule_fuzzy'] = $rule_fuzzy;
             $data['prioritas'] = $prioritas;
-            $data['defuzzy'] = $defuzzy;
+            $data['defuzzy'] = round($defuzzy, 2);
             $data['derajat_rendah'] = $derajat_rendah;
             $data['derajat_tinggi'] = $derajat_tinggi;
             $data['korban'] = $korban;

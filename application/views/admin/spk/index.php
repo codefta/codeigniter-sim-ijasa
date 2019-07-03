@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-6">
                   <!-- <div class="float-right">
-                    <a href="<?= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Aturan FIS</a>
+                    <a href="<?//= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Aturan FIS</a>
                   </div> -->
                 </div>
               </div>

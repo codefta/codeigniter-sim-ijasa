@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="chart-pie pt-4 pb-2">
-                <canvas id="donatur"></canvas>
+                <canvas id="kebutuhan"></canvas>
             </div>
             <!-- <div class="mt-4 text-center small">
             <span class="mr-2">
@@ -137,7 +137,7 @@ $(function() {
 })
 
 // Pie Chart Example
-var ctx = document.getElementById("donatur");
+var ctx = document.getElementById("kebutuhan");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {

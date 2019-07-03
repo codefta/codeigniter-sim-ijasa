@@ -76,6 +76,7 @@ $route['admin/infobencana/add'] = 'admin/infobencana/add_infobencana';
 $route['admin/infobencana/store'] = 'admin/infobencana/store_infobencana';
 $route['admin/infobencana/destroy/(:num)'] = 'admin/infobencana/destroy_infobencana/$1';
 $route['admin/infobencana/edit/(:num)'] = 'admin/infobencana/edit_infobencana/$1';
+$route['admin/infobencana/save'] = 'admin/infobencana/save_infobencana';
 $route['admin/infobencana/lihat_kebutuhan/(:num)'] = 'admin/infobencana/kebutuhan_bencana/$1';
 $route['admin/infobencana/lihat_korban/(:num)'] = 'admin/infobencana/korban_bencana/$1';
 

@@ -26,8 +26,8 @@ class Infobencana_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function update_infobencana() {
-
+    public function update_infobencana($data, $id) {
+        return $this->db->where('id', $id)->update('info_bencana', $data);
     }
 
     public function delete_infobencana($id) {

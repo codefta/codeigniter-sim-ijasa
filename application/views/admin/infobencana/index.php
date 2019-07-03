@@ -61,7 +61,7 @@
                         <th scope="row"><?= $i++ ?></th>
                         <td><?= $data['nama_bencana'] ?></td>
                         <td><?= ucwords(strtolower($data['provinsi'].', '.$data['kota'].', '.$data['kecamatan'].', '.$data['desa'])); ?></td>
-                        <td><?= $data['deskripsi'] ?></td>
+                        <td><?= substr($data['deskripsi'], 0, 100) ?></td>
                         <td><a href="<?= base_url('admin/infobencana/lihat_kebutuhan/').$data['idbencana'] ?>" class="badge badge-info">Lihat kebutuhan</a>
                         <td><a href="<?= base_url('admin/infobencana/lihat_korban/').$data['idbencana'] ?>" class="badge badge-info">Lihat korban</a>
                         <?php /*

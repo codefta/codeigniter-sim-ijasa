@@ -21,23 +21,8 @@
         <div class="card-body">
             
             <div class="row justify-content-center" id="alertChart">
-                <!-- <div class="col-md-3">
-                    <div class="alert alert-danger text-center">Data Tidak tersedia</div>
-                </div> -->
             </div>
-            <!-- <div class="chart-pie pt-4 pb-2"> -->
-                <!-- <canvas id="map"></canvas> -->
                 <div id="map"></div>
-
-            <!-- </div> -->
-            <!-- <div class="mt-4 text-center small">
-            <span class="mr-2">
-                <i class="fas fa-circle text-primary"></i> Donatur Sudah Berdonasi
-            </span>
-            <span class="mr-2">
-                <i class="fas fa-circle text-success"></i> Donatur Belum Berdonasi
-            </span>
-            </div> -->
             <div class="row mt-3 justify-content-center">
                 <div class="col-md-6">
                     <div class="mx-auto">

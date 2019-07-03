@@ -27,7 +27,7 @@
 
         <li class="nav-item <?php if($this->uri->segment(2) == 'spk' ) echo 'active'?>">
           <a class="nav-link" href="<?= base_url("admin/spk") ?>">
-            <i class="fas fa-info-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
             <span>Prioritas Kebutuhan</span></a>
         </li>
 

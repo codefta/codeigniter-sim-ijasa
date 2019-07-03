@@ -21,8 +21,6 @@ class Infobencana extends CI_Controller {
             $tahun = date("Y");
         }
 
-        // var_dump($this->infobencana_model->get_count_infobencana($tahun, $bulan));
-        // die();
 
         $data['bencana'] = $this->infobencana_model->get_count_infobencana($tahun, $bulan);
         $data['tahun'] = $tahun;

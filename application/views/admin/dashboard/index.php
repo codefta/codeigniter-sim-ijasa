@@ -9,276 +9,91 @@
 <!-- End Navbar -->
 
           <!-- Content Row -->
+
+          <!-- Content Row -->
+
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
+            <!-- Donasi -->
+            <div class="col-md-6">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Donasi Bulan Ini</h6>
                 </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
+                <!-- Card Body -->
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
+                  
+                  <div class="row justify-content-center" id="alertChart">
+                      <div class="col-md-6">
+                          <div class="alert alert-danger text-center">Data Tidak tersedia</div>
                       </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Content Row -->
-
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
                   <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
+                      <canvas id="donasi"></canvas>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- Donatur -->
+            <div class="col-md-6">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Donatur Bulan Ini</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="row justify-content-center" id="alertChart2">
+                      <div class="col-md-6">
+                          <div class="alert alert-danger text-center">Data Tidak tersedia</div>
+                      </div>
+                  </div>
+                  <div class="chart-pie pt-4 pb-2">
+                      <canvas id="donatur"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Kebutuhan -->
+            <div class="col-md-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Kebutuhan Logistik Bulan Ini</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="row justify-content-center" id="alertChart3">
+                      <div class="col-md-6">
+                          <div class="alert alert-danger text-center">Data Tidak tersedia</div>
+                      </div>
+                  </div>
+                  <div class="chart-pie pt-4 pb-2">
+                      <canvas id="kebutuhan"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Bencana Bulan Ini</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div id="map"></div>  
+                </div>
+              </div>
+            </div>
+            <!-- InfoBencana -->
+
+
           </div>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-lg-6 mb-4">
-
-              <!-- Illustrations -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                </div>
-                <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                  </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
-                </div>
-              </div>
-
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
 
 
   
@@ -292,12 +107,320 @@
 
 <!-- Add-On JS -->
 
-<!-- Page level plugins -->
+<!-- Chart JS -->
 <script src="<?= base_url('assets/admin/')?>vendor/chart.js/Chart.min.js"></script>
-<!-- Page level custom scripts -->
 <script src="<?= base_url('assets/admin/')?>js/demo/chart-area-demo.js"></script>
 <script src="<?= base_url('assets/admin/')?>js/demo/chart-pie-demo.js"></script>
+<!-- HighMaps -->
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
 
+<!-- Laporan donasi -->
+
+<script>
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+var donasi = <?= $donasi['semua_donasi'] ?>;
+var donasi_diterima = <?= $donasi['donasi_diterima'] ?>;
+var donasi_belum_diterima = <?= $donasi['donasi_belum_diterima'] ?>;
+// console.log(donasi);
+
+$("#alertChart").hide();
+$(function() {
+    if(donasi_diterima == '' && donasi_belum_diterima == '') {
+        $("#alertChart").show();
+    }
+})
+
+// Pie Chart Example
+var ctx = document.getElementById("donasi");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Donasi diterima", "Donasi belum diterima"],
+    datasets: [{
+      data: [donasi_diterima , donasi_belum_diterima],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      enabled : true,
+        callbacks: {
+            label: function(tooltipItem, data) {
+                let label = data.labels[tooltipItem.index];
+                let val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                return label + ':' + val + ' (' + (100 * val / donasi ).toFixed(2) + '%)';
+        
+            }
+        }
+    },
+    legend: {
+      display: true,
+      position: 'bottom',
+      margin: '100'
+    },
+    responsive: true,
+    cutoutPercentage: 80,
+  },
+});
+</script>
+
+<!-- Donatur -->
+
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+var donatur = <?= $donatur_angka['semua_donatur'] ?>;
+var donatur_berdonasi = <?= $donatur_angka['donatur_berdonasi'] ?>;
+var donatur_belum_berdonasi = <?= $donatur_angka['donatur_belum_berdonasi'] ?>;
+
+$("#alertChart2").hide();
+$(function() {
+    if(donatur_berdonasi == '' && donatur_belum_berdonasi == '') {
+        $("#alertChart2").show();
+    }
+})
+
+// Pie Chart Example
+var ctx = document.getElementById("donatur");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Donatur berdonasi", "Donatur belum berdonasi"],
+    datasets: [{
+      data: [donatur_berdonasi , donatur_belum_berdonasi],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      enabled : true,
+        callbacks: {
+            label: function(tooltipItem, data) {
+                let label = data.labels[tooltipItem.index];
+                let val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                return label + ':' + val + ' (' + (100 * val / donatur ).toFixed(2) + '%)';
+        
+            }
+        }
+    },
+    legend: {
+      display: true,
+      position: 'bottom',
+      margin: '100'
+    },
+    responsive: true,
+    cutoutPercentage: 80,
+  },
+});
+
+</script>
+
+
+<!-- Kebutuhan -->
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+var sandang = <?= (int)$kebutuhan['sandang'] ?>;
+var pangan = <?= (int)$kebutuhan['pangan'] ?>;
+var papan = <?= (int)$kebutuhan['papan'] ?>;
+var semua = sandang + papan +pangan;
+
+$("#alertChart3").hide();
+$(function() {
+    if(sandang == '' && papan == '' && pangan == '') {
+        $("#alertChart3").show();
+    }
+})
+
+// Pie Chart Example
+var ctx = document.getElementById("kebutuhan");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Sandang", "Papan", "Pangan"],
+    datasets: [{
+      data: [sandang , papan, pangan],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      enabled : true,
+        callbacks: {
+            label: function(tooltipItem, data) {
+                let label = data.labels[tooltipItem.index];
+                let val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                return label + ':' + val + ' (' + (100 * val / semua ).toFixed(2) + '%)';
+        
+            }
+        }
+    },
+    legend: {
+      display: true,
+      position: 'bottom',
+      margin: '100'
+    },
+    responsive: true,
+    cutoutPercentage: 80,
+  },
+});
+
+</script>
+
+<!-- Info Bencana -->
+<script>
+var data = [
+    ['id-3700', 0],
+    // Aceh
+    ['id-ac', <?php if(!isset($bencana['aceh'])) echo 0; else echo $bencana['aceh'] ?>],
+    // Kalimantan Timur
+    ['id-ki', <?php if(!isset($bencana['kalimantan timur'])) echo 0; else echo $bencana['kalimantan timur'] ?>],
+    // Jawa Tengah
+    ['id-jt', <?php if(!isset($bencana['jawa tengah'])) echo 0; else echo $bencana['jawa tengah'] ?>],
+    // Bengkulu
+    ['id-be', <?php if(!isset($bencana['bengkulu'])) echo 0; else echo $bencana['bengkulu'] ?>],
+    // Banten
+    ['id-bt', <?php if(!isset($bencana['banten'])) echo 0; else echo $bencana['banten'] ?>],
+    // Kalimantan Barat
+    ['id-kb', <?php if(!isset($bencana['kalimantan barat'])) echo 0; else echo $bencana['kalimantan barat'] ?>],
+    // Bangka Belitung
+    ['id-bb', <?php if(!isset($bencana['kepulauan bangka belitung'])) echo 0; else echo $bencana['kepulauan bangka belitung'] ?>],
+    // Bali
+    ['id-ba', <?php if(!isset($bencana['bali'])) echo 0; else echo $bencana['bali'] ?>],
+    // Jawa Timur
+    ['id-ji', <?php if(!isset($bencana['jawa timur'])) echo 0; else echo $bencana['jawa timur'] ?>],
+    // Kalimantan Selatan
+    ['id-ks', <?php if(!isset($bencana['kalimantan selatan'])) echo 0; else echo $bencana['kalimantan selatan'] ?>],
+    // Nusa Tenggara Timur
+    ['id-nt', <?php if(!isset($bencana['nusa tenggara timur'])) echo 0; else echo $bencana['nusa tenggara timur'] ?>],
+    // Sulawesi Selatan
+    ['id-se', <?php if(!isset($bencana['sulawesi selatan'])) echo 0; else echo $bencana['sulawesi selatan'] ?>],
+    // Kepulauan Riau
+    ['id-kr', <?php if(!isset($bencana['kepulauan riau'])) echo 0; else echo $bencana['kepulauan riau'] ?>],
+    // Papua Barat
+    ['id-ib', <?php if(!isset($bencana['papua barat'])) echo 0; else echo $bencana['papua barat'] ?>],
+    // Sumatera Utara
+    ['id-su', <?php if(!isset($bencana['sumatra utara'])) echo 0; else echo $bencana['sumatra utara'] ?>],
+    // Riau
+    ['id-ri', <?php if(!isset($bencana['riau'])) echo 0; else echo $bencana['riau'] ?>],
+    // Sulawesi Utara
+    ['id-sw', <?php if(!isset($bencana['sulawesi utara'])) echo 0; else echo $bencana['sulawesi utara'] ?>],
+    // Maluku Utara
+    ['id-la', <?php if(!isset($bencana['maluku utara'])) echo 0; else echo $bencana['maluku utara'] ?>],
+    // Sumatera Barat
+    ['id-sb', <?php if(!isset($bencana['sumatra barat'])) echo 0; else echo $bencana['sumatra barat'] ?>],
+    // Maluku
+    ['id-ma', <?php if(!isset($bencana['maluku'])) echo 0; else echo $bencana['maluku'] ?>],
+    // Nusa Tenggara Barat
+    ['id-nb', <?php if(!isset($bencana['nusa tenggara barat'])) echo 0; else echo $bencana['nusa tenggara barat'] ?>],
+    // Sulawesi Tenggara
+    ['id-sg', <?php if(!isset($bencana['sulawesi tenggara'])) echo 0; else echo $bencana['sulawesi tenggara'] ?>],
+    // Sulawesi Tengah
+    ['id-st', <?php if(!isset($bencana['sulawesi tengah'])) echo 0; else echo $bencana['sulawesi tengah'] ?>],
+    // Papua
+    ['id-pa', <?php if(!isset($bencana['papua'])) echo 0; else echo $bencana['papua'] ?>],
+    // Jawa Barat
+    ['id-jr', <?php if(!isset($bencana['jawa barat'])) echo 0; else echo $bencana['jawa barat'] ?>],
+    // Lampung
+    ['id-1024', <?php if(!isset($bencana['lampung'])) echo 0; else echo $bencana['lampung'] ?>],
+    // Jakarta
+    ['id-jk', <?php if(!isset($bencana['dki jakarta'])) echo 0; else echo $bencana['dki jakarta'] ?>],
+    // Gorontalo
+    ['id-go', <?php if(!isset($bencana['gorontalo'])) echo 0; else echo $bencana['gorontalo'] ?>],
+    // Yogyakarta
+    ['id-yo', <?php if(!isset($bencana['di yogyakarta'])) echo 0; else echo $bencana['di yogyakarta'] ?>],
+    // Kalimantan Tengah
+    ['id-kt', <?php if(!isset($bencana['kalimantan tengah'])) echo 0; else echo $bencana['kalimantan tengah'] ?>],
+    // Sumatera Selatan
+    ['id-sl', <?php if(!isset($bencana['sumatera selatan'])) echo 0; else echo $bencana['sumatera selatan'] ?>],
+    // Sulawesi Barat
+    ['id-sr', <?php if(!isset($bencana['sulawesi barat'])) echo 0; else echo $bencana['maluku'] ?>],
+    // Jambi
+    ['id-ja', <?php if(!isset($bencana['jambi'])) echo 0; else echo $bencana['jambi'] ?>]
+];
+
+// Create the chart
+Highcharts.mapChart('map', {
+    chart: {
+        map: 'countries/id/id-all'
+    },
+
+    title: {
+        text: 'Data Banyaknya Bencana'
+    },
+
+    subtitle: {
+        text: 'Sumber map: <a href="http://code.highcharts.com/mapdata/countries/id/id-all.js">Indonesia</a>'
+    },
+
+    mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+            verticalAlign: 'bottom'
+        }
+    },
+
+    colorAxis: {
+        min: 0
+    },
+
+    series: [{
+        data: data,
+        name: 'Jumlah Bencana',
+        states: {
+            hover: {
+                color: '#BADA55'
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+        }
+    }]
+});
+
+</script>
 
 <!-- End of Page-->
 <?php $this->load->view('admin/templates/ender') ?>

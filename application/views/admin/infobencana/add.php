@@ -306,6 +306,7 @@
               data: {kecamatan: $("#kecamatan").val()},
               dataType: "json",
               success: function(response){
+                console.log(response);
                   $('#desa').html(response.desa).show();
               },
               error: function(xhr, ajaxOptions, thrownError){
