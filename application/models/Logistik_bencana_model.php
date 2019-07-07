@@ -47,4 +47,8 @@ class Logistik_bencana_model extends CI_Model {
     public function replace_logistik_bencana($data_kebutuhan) {
         return $this->db->replace('logistik_bencana', $data_kebutuhan);
     }
+
+    public function delete_logistik_bencana($id) {
+        return $this->db->where('id', $id)->delete('logistik_bencana');
+    }
 }

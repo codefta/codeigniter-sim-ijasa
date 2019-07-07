@@ -179,10 +179,14 @@
               jenis_logistik.forEach(function(value, key) {
                 if(item.jenis_logistik == value.jenis) {
                   selected = 'selected';
+                } else {
+                  selected = ' ';
                 }
                 
-                jenis_option += '<option value='+value.jenis+' '+selected+'>'+value.jenis+'</option>';
+                jenis_option += '<option value="'+value.jenis+'" '+selected+'>'+value.jenis+'</option>';
               });
+
+              console.log(jenis_option);
               getNamaLog(item.id_utama, item.id_logistik, item.jenis_logistik, item.nama, item.jumlah, jenis_option, x);
               
             x++;
@@ -190,10 +194,26 @@
 
             addJenisLogistik(x);
 
+            
+
           }
         });
         }
       }); 
+
+      function removeButton(id) {
+        
+
+        $.ajax({
+          method: "POST",
+          url: "<?= base_url('admin/infobencana/remove_logistik_bencana/') ?>" + id,
+          dataType: "json",
+          success: function (response) {
+            console.log(response.status);
+            $("#btnRemove").parent('div').parent('.row').remove();
+          }
+        });
+      }
 
       function getNamaLog(id_utama, id, jenis, nama, jumlah, jenis_option, x) {
         $.ajax({
@@ -237,7 +257,7 @@
                   </div>
                 </div>
                 <div class="col-md-2">
-                  <a href="javascript:void(0)" id="removeButton" class="badge badge-danger">Hapus</a>
+                  <button class="badge badge-danger" type="button" onclick="removeButton(`+id_utama+`)" id="btnRemove">Hapus</button>
                 </div>
               </div>`
             );

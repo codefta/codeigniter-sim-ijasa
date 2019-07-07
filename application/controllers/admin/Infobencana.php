@@ -263,4 +263,20 @@ class Infobencana extends CI_Controller {
 
         echo json_encode($data);
     }
+
+    public function remove_logistik_bencana($id) {
+        $remove = $this->logistik_bencana_model->delete_logistik_bencana($id);
+
+        if($remove) {
+            $data = [
+                'status' => true
+            ];
+        } else {
+            $data = [
+                'status' => false
+            ];
+        }
+
+        echo json_encode($data);
+    }
 }
