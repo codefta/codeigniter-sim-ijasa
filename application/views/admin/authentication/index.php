@@ -38,12 +38,19 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang di <b>SIM - IJASA<b></h1>
                   </div>
+                  <?php if($this->session->flashdata('notif_login')) : ?>
+                    <div class="mb-3">
+                      <?= $this->session->flashdata('notif_login') ?>
+                    </div>
+                  <?php endif ?>
                   <form class="user" action="<?= base_url('admin/login') ?>" method="post">
                     <div class="form-group">
                       <input type="text" name="username" placeholder="Masukkan username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp">
+                      <small class="text-danger"><?= form_error('username') ?></small>
                     </div>
                     <div class="form-group">
                       <input type="password" name="password" placeholder="Masukkan password" class="form-control form-control-user" id="exampleInputPassword">
+                      <small class="text-danger"><?= form_error('password') ?></small>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login

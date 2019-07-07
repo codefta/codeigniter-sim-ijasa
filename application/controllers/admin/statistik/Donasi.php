@@ -21,6 +21,10 @@ class Donasi extends CI_Controller {
             $tahun =date("Y");
         }
 
+        if(!$bulan) {
+            $bulan = date("m");
+        }
+
         $donasi = (int) $this->donasi_model->get_donasi($tahun, $bulan)['jml_donasi'];
         $donasi_diterima = (int) $this->donasi_model->get_donasi_diterima($tahun, $bulan)['jml_donasi_diterima'];
         $donasi_belum_diterima = (int) $this->donasi_model->get_donasi_belum_diterima($tahun, $bulan)['jml_donasi_belum_diterima'];
@@ -32,6 +36,7 @@ class Donasi extends CI_Controller {
         );
 
         $data['tahun'] = $tahun;
+        $data['bulan'] = $bulan;
         $data['donasi'] = $donasi_data;
         $data['title'] = 'Statistik / Laporan Donasi';
         $this->load->view('admin/statistik/donasi/index', $data);
@@ -46,6 +51,10 @@ class Donasi extends CI_Controller {
             $tahun =date("Y");
         }
 
+        if(!$bulan) {
+            $bulan = date("m");
+        }
+
         if(!$status) {
             $status = 'diterima';
         }
@@ -58,7 +67,8 @@ class Donasi extends CI_Controller {
 
         $data['donasi'] = $data;
         $data['status'] = $status;
-        $data['tahun'] = $tahun;        
+        $data['tahun'] = $tahun; 
+        $data['bulan'] = $bulan;
         $data['title'] = 'Statistik / Laporan Donasi';
         $this->load->view('admin/statistik/donasi/jenis_donasi', $data);
     }

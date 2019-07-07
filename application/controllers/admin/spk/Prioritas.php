@@ -5,7 +5,7 @@ class Prioritas extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(['korban_bencana_model', 'infobencana_model', 'jenis_logistik_model']);
+        $this->load->model(['korban_bencana_model', 'infobencana_model', 'jenis_logistik_model', 'spk/prioritas_model']);
     }
 
     public function index() {
@@ -13,31 +13,78 @@ class Prioritas extends CI_Controller {
         $id_bencana = $this->input->get('id_bencana');
         $id_logistik = $this->input->get('id_logistik');
 
+        $domain_rendah = $this->prioritas_model->get_domain()['rendah'];
+        $domain_tinggi = $this->prioritas_model->get_domain()['tinggi'];
+        $batas_bawah = (int) $this->prioritas_model->get_domain()['b_bawah'];
+        $batas_atas = (int) $this->prioritas_model->get_domain()['b_atas'];
+
+        $aturan = $this->prioritas_model->get_aturan();
+
         if($id_bencana) {
             $korban = $this->korban_bencana_model->get_korban_bencana_id($id_bencana);
             $total_korban = (int)$korban['anak'] + (int)$korban['laki'] + (int) $korban['perempuan'];
-            $anak = round(((int) $korban['anak'] / (int)$total_korban) * 20, 2);
-            $laki = round(((int) $korban['laki'] / (int)$total_korban) * 20, 2);
-            $perempuan = round(((int) $korban['perempuan'] / (int)$total_korban) * 20, 2);
+            $anak = round(((int) $korban['anak'] / (int)$total_korban) * (int) $domain_tinggi, 2);
+            $laki = round(((int) $korban['laki'] / (int)$total_korban) * (int) $domain_tinggi, 2);
+            $perempuan = round(((int) $korban['perempuan'] / (int)$total_korban) * (int) $domain_tinggi, 2);
 
             /* Derajat keanggotaan */
-            $rendah_anak = round($this->derajat_rendah($anak), 2);
-            $rendah_laki = round($this->derajat_rendah($laki), 2);
-            $rendah_perempuan = round($this->derajat_rendah($perempuan), 2);
+            $rendah_anak = round($this->derajat_rendah($anak, $batas_atas, $batas_bawah), 2);
+            $rendah_laki = round($this->derajat_rendah($laki, $batas_atas, $batas_bawah), 2);
+            $rendah_perempuan = round($this->derajat_rendah($perempuan, $batas_atas, $batas_bawah), 2);
 
-            $tinggi_anak = round($this->derajat_tinggi($anak), 2);
-            $tinggi_laki = round($this->derajat_tinggi($laki), 2);
-            $tinggi_perempuan = round($this->derajat_tinggi($perempuan), 2);
+            $tinggi_anak = round($this->derajat_tinggi($anak, $batas_atas, $batas_bawah), 2);
+            $tinggi_laki = round($this->derajat_tinggi($laki, $batas_atas, $batas_bawah), 2);
+            $tinggi_perempuan = round($this->derajat_tinggi($perempuan, $batas_atas, $batas_bawah), 2);
+            
+            $result_rule = [];
+            $result_prioritas = [];
+            $i = 1;
+            $j = 1;
+            foreach($aturan as $item) {
+                
+                if($item['ba'] == 'tinggi') {
+                    $ba = $tinggi_anak;
+                } else {
+                    $ba = $rendah_anak;
+                }
 
-            $rule_1 = min($tinggi_anak, $tinggi_perempuan, $tinggi_laki);
-            $rule_2 = min($rendah_anak, $rendah_perempuan, $tinggi_laki);
-            $rule_3 = min($rendah_anak, $tinggi_perempuan, $tinggi_laki);
+                if($item['bp'] == 'tinggi') {
+                    $bp = $tinggi_perempuan;
+                } else {
+                    $bp = $rendah_perempuan;
+                }
 
-            $prioritas_1 = $rule_1 * ( 8 - 4 ) + 4;
-            $prioritas_2 = 8 - ($rule_2 * ( 8 - 4 ));
-            $prioritas_3 = $rule_3 * ( 8 - 4 ) + 4;
+                if($item['bl'] == 'tinggi') {
+                    $bl = $tinggi_laki;
+                } else {
+                    $bl = $rendah_laki;
+                }
 
-            $defuzzy = ($rule_1 * $prioritas_1 + $rule_2 * $prioritas_2 + $rule_3 * $prioritas_3) / ($rule_1 + $rule_2 + $rule_3);
+                if($item['operator'] == 'and') {
+                    $rule = min($ba, $bp, $bl);
+                } else {
+                    $rule = max($ba, $bp, $bl);
+                }
+
+                if($item['hasil'] == 'tinggi') {
+                    $prioritas = $rule * ( $batas_atas - $batas_bawah ) + $batas_bawah;
+                } else {
+                    $prioritas = $batas_atas - ($rule * ($batas_atas - $batas_bawah));
+                }
+
+                $result_rule[$i++] = $rule;
+                $result_prioritas[$j++] = $prioritas;
+
+            }
+
+            $defuzzy = 0;
+
+            foreach($result_rule as $key => $rule) {
+                $defuzzy = $rule * $result_prioritas[$key];
+                $sum_rule += $result_rule[$key];
+            }
+
+            $defuzzy_result = $defuzzy / $sum_rule;
 
             if(is_nan($defuzzy)) {
                 $defuzzy = 0;
@@ -54,38 +101,22 @@ class Prioritas extends CI_Controller {
                 'laki' => $tinggi_laki,
                 'perempuan' => $tinggi_perempuan
             ];
-
-            $rule_fuzzy = [
-                '1' => $rule_1,
-                '2' => $rule_2,
-                '3' => $rule_3
-            ];
-
-            $prioritas = [
-                '1' => $prioritas_1,
-                '2' => $prioritas_2,
-                '3' => $prioritas_3
-            ];
-        
+            
             $korban_persen = [
                 'anak' => $anak,
                 'laki' => $laki,
                 'perempuan' => $perempuan,
             ];
 
-
-            $data['rule_fuzzy'] = $rule_fuzzy;
-            $data['prioritas'] = $prioritas;
-            $data['defuzzy'] = round($defuzzy, 2);
+            $data['rule_fuzzy'] = $result_rule;
+            $data['prioritas'] = $result_prioritas;
+            $data['defuzzy'] = round($defuzzy_result, 2);
             $data['derajat_rendah'] = $derajat_rendah;
             $data['derajat_tinggi'] = $derajat_tinggi;
             $data['korban'] = $korban;
             $data['korban_persen'] = $korban_persen;
         }
         
-        
-        // var_dump($korban);
-        // // die();
         $data['id_bencana'] = $id_bencana;
         $data['id_logistik'] = $id_logistik;
         $data['infobencana'] = $this->infobencana_model->get_infobencana();
@@ -94,32 +125,121 @@ class Prioritas extends CI_Controller {
         $this->load->view('admin/spk/index', $data);
     }
 
-    private function derajat_rendah($var) {
-        if($var  <= 4) {
+    public function domain() {
+        $data['domain'] = $this->prioritas_model->get_domain();
+        $data['title'] = 'Pendukung Keputusan / Domain';
+        $this->load->view('admin/spk/domain', $data);
+    }
+
+    public function save_domain() {
+
+        $data = [
+            'rendah' => $this->input->post('rendah'),
+            'tinggi' => $this->input->post('tinggi'),
+            'b_atas' => $this->input->post('b_atas'),
+            'b_bawah' => $this->input->post('b_bawah')
+        ];
+
+        $save = $this->prioritas_model->update_domain($data);
+
+        if($save) {
+            $this->session->set_flashdata('notif_domain', '<div class="alert alert-success">Anda Berhasil Mengubah Domain Keanggotaan</div>');
+            redirect(base_url("admin/spk/prioritas/domain"));
+        } else {
+            $this->session->set_flashdata('notif_domain', '<div class="alert alert-danger">Anda Gagal Mengubah Domain Keanggotaan</div>');
+            redirect(base_url("admin/spk/prioritas/domain"));
+        }
+    }
+
+    public function aturan() {
+        $data['aturan'] = $this->prioritas_model->get_aturan();
+        $data['title'] = 'Pendukung Keputusan / Aturan';
+        $this->load->view('admin/spk/aturan/index', $data);
+    }
+
+    public function tambah_aturan() {
+        $data['title'] = 'Pendukung Keputusan / Aturan / Tambah';
+        $this->load->view('admin/spk/aturan/tambah', $data);
+    }
+
+    public function save_aturan() {
+
+        $data = [
+            'ba' => $this->input->post("ba"),
+            'bl' => $this->input->post("bl"),
+            'bp' => $this->input->post("bp"),
+            'hasil' => $this->input->post("hasil"),
+            'operator' => $this->input->post("operator")
+        ];
+
+        $save = $this->prioritas_model->insert_aturan($data);
+
+        if($save) {
+            $this->session->set_flashdata('notif_aturan', '<div class="alert alert-success">Anda Berhasil Menambah Aturan Fuzzy</div>');
+            redirect(base_url("admin/spk/prioritas/aturan"));
+        } else {
+            $this->session->set_flashdata('notif_aturan', '<div class="alert alert-gagal">Anda Gagal Menambah Aturan Fuzzy</div>');
+            redirect(base_url("admin/spk/prioritas/aturan"));
+        }
+    }
+
+    public function sunting_aturan($id) {
+        $data['aturan'] = $this->prioritas_model->get_aturan_by_id($id);
+        $data['title'] = 'Pendukung Keputusan / Aturan / Sunting';
+        $this->load->view('admin/spk/aturan/edit', $data);
+    }
+
+    public function update_aturan() {
+        $data = [
+            'ba' => $this->input->post("ba"),
+            'bl' => $this->input->post("bl"),
+            'bp' => $this->input->post("bp"),
+            'hasil' => $this->input->post("hasil"),
+            'operator' => $this->input->post("operator")
+        ];
+
+        $id = $this->input->post("id");
+
+        $save = $this->prioritas_model->update_aturan($data, $id);
+
+        if($save) {
+            $this->session->set_flashdata('notif_aturan', '<div class="alert alert-success">Anda Berhasil Mengubah Aturan Fuzzy</div>');
+            redirect(base_url("admin/spk/prioritas/aturan"));
+        } else {
+            $this->session->set_flashdata('notif_aturan', '<div class="alert alert-gagal">Anda Gagal Mengubah Aturan Fuzzy</div>');
+            redirect(base_url("admin/spk/prioritas/aturan"));
+        }
+    }
+
+    public function hapus_aturan($id) {
+        $save = $this->prioritas_model->delete_aturan($id);
+
+        if($save) {
+            $this->session->set_flashdata('notif_aturan', '<div class="alert alert-success">Anda Berhasil Menghapus Aturan Fuzzy</div>');
+            redirect(base_url("admin/spk/prioritas/aturan"));
+        } else {
+            $this->session->set_flashdata('notif_aturan', '<div class="alert alert-gagal">Anda Gagal Menghapus Aturan Fuzzy</div>');
+            redirect(base_url("admin/spk/prioritas/aturan"));
+        }        
+    }
+
+    private function derajat_rendah($var, $batas_atas, $batas_bawah) {
+        if($var  <= $batas_bawah) {
             return $rendah_var = 1;
-        } else if($var < 8 && $var > 4) {
-            return $rendah_var = ( 8 - $var ) / ( 8 - 4 );
-        } else if($var >= 8) {
+        } else if($var < $batas_atas && $var > $batas_bawah) {
+            return $rendah_var = ( $batas_atas - $var ) / ( $batas_atas - $batas_bawah );
+        } else if($var >= $batas_atas) {
             return $rendah_var = 0;
         }
     }
 
-    private function derajat_tinggi($var) {
-        if($var >= 8) {
+    private function derajat_tinggi($var, $batas_atas, $batas_bawah) {
+        if($var >= $batas_atas) {
             return $tinggi_var = 1;
-        } else if($var > 4 && $var < 8) {
-            return $tinggi_var = ( $var - 4) / (8 - 4);
+        } else if($var > $batas_bawah && $var < $batas_atas) {
+            return $tinggi_var = ( $var - $batas_bawah) / ($batas_atas - $batas_bawah);
         } else {
             return $tinggi_var = 0;
         }
-    }
-
-    public function hitung_fis() {
-        
-    }
-    
-    public function tambah_fis() {
-        $data['title'] = 'FIS/Tambah';
-        $this->load->view('admin/spk/add_FIS', $data);
     }
 }

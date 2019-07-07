@@ -61,10 +61,10 @@ class Users extends CI_Controller {
             $store = $this->users_model->insert_users($data);
 
             if($store) {
-                $this->session->set_flashdata('users_notif', 'Anda berhasil menambah akun baru');
+                $this->session->set_flashdata('users_notif', '<span class="alert alert-success">Anda berhasil menambah akun baru</span>');
                 redirect(base_url('admin/users'));
             } else {
-                $this->session->set_flashdata('users_notif', 'Anda gagal menambah akun baru');
+                $this->session->set_flashdata('users_notif', '<span class="alert alert-danger">Anda gagal menambah akun baru</span>');
                 redirect(base_url('admin/users'));
             }
 
@@ -91,10 +91,10 @@ class Users extends CI_Controller {
         $save = $this->users_model->update_users($data, $id);
 
         if($save) {
-            $this->session->set_flashdata('users_notif', 'Anda berhasil mengubah akun baru');
+            $this->session->set_flashdata('users_notif', '<span class="alert alert-success">Anda berhasil mengubah akun</span>');            
             redirect(base_url('admin/users'));
         } else {
-            $this->session->set_flashdata('users_notif', 'Anda gagal mengubah akun baru');
+            $this->session->set_flashdata('users_notif', '<span class="alert alert-danger">Anda gagal mengubah akun</span>');
             redirect(base_url('admin/users'));
         }
 
@@ -110,10 +110,10 @@ class Users extends CI_Controller {
         $remove = $this->users_model->delete_users($id);
 
         if($remove) {
-            $this->session->set_flashdata('users_notif', 'Anda berhasil menghapus akun baru');
+            $this->session->set_flashdata('users_notif', '<span class="alert alert-success">Anda berhasil menghapus akun</span>');                        
             redirect(base_url('admin/users'));
         } else {
-            $this->session->set_flashdata('users_notif', 'Anda gagal menghapus akun baru');
+            $this->session->set_flashdata('users_notif', '<span class="alert alert-danger">Anda gagal menghapus akun</span>');
             redirect(base_url('admin/users'));
         }
         

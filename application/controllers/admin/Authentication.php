@@ -32,9 +32,13 @@ class Authentication extends CI_Controller {
 
             if($login) {
                 $this->session->set_userdata('admin_loggedin', $login);
-                redirect(base_url('admin'));
+                if($this->session->userdata('admin_loggedin')['role'] == "Admin") {
+                    redirect(base_url('admin'));
+                } else {
+                    redirect(base_url('admin/infobencana'));
+                }
             } else {
-                $this->session->set_flashdata("notif_login_failed", "Username/Password salah");
+                $this->session->set_flashdata("notif_login", "<span class='alert alert-danger'>Username/Password salah</span>");
                 redirect(base_url('admin/authentication'));
             }
         }

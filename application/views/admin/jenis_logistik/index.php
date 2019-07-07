@@ -10,7 +10,9 @@
 <!-- End Navbar -->
 
         <?php if($this->session->flashdata('notif_logistik')) : ?>
-          <div class="notif"></div>
+          <div class="mb-3">
+            <?= $this->session->flashdata('notif_logistik') ?>
+          </div>
         <?php endif ?>
 
         <!-- DataTales Example -->

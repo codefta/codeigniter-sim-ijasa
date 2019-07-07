@@ -31,4 +31,6 @@ class Jenis_logistik_model extends CI_Model {
     public function get_logistik_by_jenis($jenis_logistik)  {
         return $this->db->where('jenis', $jenis_logistik)->get('jenis_logistik')->result_array();
     }
+
+    
 }

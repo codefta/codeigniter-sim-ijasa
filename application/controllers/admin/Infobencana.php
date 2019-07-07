@@ -41,7 +41,6 @@ class Infobencana extends CI_Controller {
         $this->load->view('admin/infobencana/add', $data);
     }
 
-
     public function store_infobencana() {
         $this->form_validation->set_rules('nama_bencana', 'Nama Bencana', 'required');
         $this->form_validation->set_rules('deskripsi_bencana', 'Deskripsi Bencana', 'required');
@@ -100,10 +99,10 @@ class Infobencana extends CI_Controller {
             $store = $this->logistik_bencana_model->insert_logistik_bencana($data);
 
             if($store) {
-                $this->session->set_flashdata('notif_infobencana', 'Anda telah berhasil menambah info bencana');
+                $this->session->set_flashdata('notif_infobencana', '<span class="alert alert-success">Anda telah berhasil menambah info bencana</span>');
                 redirect(base_url('admin/infobencana'));
             } else {
-                $this->session->set_flashdata('notif_infobencana', 'Anda gagal menambah info bencana');
+                $this->session->set_flashdata('notif_infobencana', '<span class="alert alert-danger">Anda gagal menambah info bencana</span>');
                 redirect(base_url('admin/infobencana'));
             }
         }
@@ -145,22 +144,29 @@ class Infobencana extends CI_Controller {
         ];
         
         $save_korban = $this->korban_bencana_model->update_korban_bencana($data_korban, $id_bencana);
+        
+        for($i=0; $i < count($this->input->post('jenis_logistik')); $i++) {
+            $data_kebutuhan['id'] = $this->input->post('id_utama')[$i];
+            $data_kebutuhan['info_bencana_id'] = $id_bencana;
+            $data_kebutuhan['jenis_logistik_id'] = $this->input->post('nama_logistik[]')[$i];
+            $data_kebutuhan['jumlah'] = $this->input->post('jumlah_logistik[]')[$i];
 
-
-        // for($i=0; $i < count($this->input->post('jenis_logistik')); $i++) {
-        //     $data[] = [
-        //         'jenis_logistik_id' => $this->input->post('nama_logistik[]')[$i],
-        //         'jumlah' => $this->input->post('jumlah_logistik[]')[$i]
-        //     ];
-        // }
-
-        // $store = $this->logistik_bencana_model->update_logistik_bencana($data);
-
+            // $data_kebutuhan[] = [
+                // 'id' => $this->input->post('id')[$i],
+            //     'info_bencana_id' => $id_bencana,
+            //     'jenis_logistik_id' => $this->input->post('nama_logistik[]')[$i],
+            //     'jumlah' => $this->input->post('jumlah_logistik[]')[$i]
+            // ];
+            // var_dump($data_kebutuhan);
+            
+        }
+        // die();
+        $store = $this->logistik_bencana_model->replace_logistik_bencana($data_kebutuhan);
         if($store) {
-            $this->session->set_flashdata('notif_infobencana', 'Anda telah berhasil menambah info bencana');
+            $this->session->set_flashdata('notif_infobencana', '<span class="alert alert-success">Anda telah berhasil mengubah info bencana</span>');
             redirect(base_url('admin/infobencana'));
         } else {
-            $this->session->set_flashdata('notif_infobencana', 'Anda gagal menambah info bencana');
+            $this->session->set_flashdata('notif_infobencana', '<span class="alert alert-danger">Anda gagal mengubah info bencana</span>');
             redirect(base_url('admin/infobencana'));
         }
     }
@@ -176,11 +182,11 @@ class Infobencana extends CI_Controller {
         $delete = $this->infobencana_model->delete_infobencana($id);
 
         if($delete) {
-            $this->session->set_flashdata('notif_infobencana', 'Anda telah berhasil menghapus info bencana');
-            redirect(base_url('infobencana'));
+            $this->session->set_flashdata('notif_infobencana', '<span class="alert alert-success">Anda telah berhasil menghapus info bencana</span>');
+            redirect(base_url('admin/infobencana'));
         } else {
-            $this->session->set_flashdata('notif_infobencana', 'Anda gagal menghapus info bencana');
-            redirect(base_url('infobencana'));
+            $this->session->set_flashdata('notif_infobencana', '<span class="alert alert-danger">Anda gagal menghapus info bencana</span>');
+            redirect(base_url('admin/infobencana'));
         }
     }
 
@@ -223,5 +229,38 @@ class Infobencana extends CI_Controller {
             return 'bencana_default.png';
         }
 
+    }
+
+    public function get_logistik_bencana($id) {
+        $logistik_bencana = $this->logistik_bencana_model->get_logistik_bencana_edit_id($id);
+
+        $data = [
+            'data' => $logistik_bencana,
+            'status' => true
+        ];
+
+        echo json_encode($data);
+    }
+
+    public function get_jenis_logistik() {
+        $jenis_logistik = $this->jenis_logistik_model->get_jenis();
+
+        $data = [
+            'data' => $jenis_logistik,
+            'status' => true
+        ];
+
+        echo json_encode($data);
+    }
+
+    public function get_nama_logistik($jenis_logistik) {
+        $jenis_logistik = $this->jenis_logistik_model->get_logistik_by_jenis($jenis_logistik);
+
+        $data = [
+            'data' => $jenis_logistik,
+            'status' => true
+        ];
+
+        echo json_encode($data);
     }
 }

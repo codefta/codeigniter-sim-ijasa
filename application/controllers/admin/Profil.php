@@ -37,10 +37,10 @@ class Profil extends CI_Controller {
         $save = $this->users_model->update_users($data, $id);
 
         if($save) {
-            $this->session->set_flashdata('profil_notif', 'Anda berhasil mengubah akun baru');
+            $this->session->set_flashdata('profil_notif', '<span class="alert alert-success">Anda berhasil mengubah profil</span>');
             redirect(base_url('admin/profil'));
         } else {
-            $this->session->set_flashdata('profil_notif', 'Anda gagal mengubah akun baru');
+            $this->session->set_flashdata('profil_notif', '<span class="alert alert-danger">Anda gagal mengubah profil</span>');
             redirect(base_url('admin/profil'));
         }
     }

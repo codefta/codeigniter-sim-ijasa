@@ -20,11 +20,6 @@
                 <div class="col-md-6">
                   <h6 class="font-weight-bold text-primary">Perhitungan Prioritas Barang Donasi</h6>
                 </div>
-                <div class="col-md-6">
-                  <!-- <div class="float-right">
-                    <a href="<?//= base_url('admin/spk/add_FIS') ?>" class="btn btn-success"><i class="fas fa-plus"></i> Aturan FIS</a>
-                  </div> -->
-                </div>
               </div>
             </div>
             <div class="card-body">
@@ -130,21 +125,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="text-center">
-                      <td><?= 1 ; ?> </td>
-                      <td><?= $rule_fuzzy['1']?></td>
-                      <td><?= $prioritas['1'] ?> </td>
-                    </tr>
-                    <tr class="text-center">
-                      <td><?= 2 ; ?> </td>
-                      <td><?= $rule_fuzzy['2']?></td>
-                      <td><?= $prioritas['2'] ?> </td>
-                    </tr>
-                    <tr class="text-center">
-                      <td><?= 3 ; ?> </td>
-                      <td><?= $rule_fuzzy['3']?></td>
-                      <td><?= $prioritas['3'] ?> </td>
-                    </tr>
+                    <?php foreach($rule_fuzzy as $key => $value) : ?>
+                      <tr class="text-center">
+                        <td><?= $key ; ?> </td>
+                        <td><?= $value?></td>
+                        <td><?= $prioritas[$key] ?> </td>
+                      </tr>
+                    <?php endforeach ?>
                   </tbody>
                 </table>
               </div>

@@ -7,6 +7,12 @@
 <!-- Navbar -->
 <?php $this->load->view('admin/templates/navbar') ?>
 <!-- End Navbar -->
+        <?php if($this->session->flashdata('profil_notif')) : ?>
+          <div class="mb-3">
+            <?= $this->session->flashdata('profil_notif') ?>
+          </div>
+        <?php endif ?>
+
         <div class="row">
           <div class="col-md-4">
             <div class="card text-center shadow-sm border-0">

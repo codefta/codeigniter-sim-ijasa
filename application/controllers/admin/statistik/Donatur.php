@@ -29,6 +29,10 @@ class Donatur extends CI_Controller {
             $tahun = date('Y');
         }
 
+        if(empty($bulan)) {
+            $bulan = date('m');
+        }
+
         
         $donatur_angka = array(
             'semua_donatur' => $donatur,
@@ -38,6 +42,7 @@ class Donatur extends CI_Controller {
 
         $data['donatur_angka'] = $donatur_angka;
         $data['tahun'] = $tahun;
+        $data['bulan'] = $bulan;
         $data['title'] = 'Statistik / Donatur';
         $this->load->view('admin/statistik/donatur/index', $data);
     }

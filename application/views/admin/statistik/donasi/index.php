@@ -57,26 +57,25 @@
                                 <select name="tahun" id="" class="form-control mr-3">
                                     <option value="">Pilih Tahun</option>
                                     <?php if(!isset($_GET['tahun'])) $_GET['tahun'] = 0 ?>
-                                    <option value="2017" <?php if($tahun == '2017') echo 'selected' ?> <?php if($_GET['tahun'] == '2017') echo 'selected' ?>>2017</option>
-                                    <option value="2018" <?php if($tahun == '2018') echo 'selected' ?> <?php if($_GET['tahun'] == '2018') echo 'selected' ?>>2018</option>
-                                    <option value="2019" <?php if($tahun == '2019') echo 'selected' ?> <?php if($_GET['tahun'] == '2019') echo 'selected' ?>>2019</option>
+                                    <option value="2017"  <?php if(($tahun == '2017') || ($_GET['tahun'] == '2017')) echo 'selected' ?>>2017</option>
+                                    <option value="2018"  <?php if(($tahun == '2018') || ($_GET['tahun'] == '2018')) echo 'selected' ?>>2018</option>
+                                    <option value="2019"  <?php if(($tahun == '2019') || ($_GET['tahun'] == '2019')) echo 'selected' ?>>2019</option>
                                 </select>
-                                <small class="text-danger"><?= form_error('tahun') ?></small>
                                 <select name="bulan" id="" class="form-control mr-3">
                                     <option value="">Pilih Bulan</option>
                                     <?php if(!isset($_GET['bulan'])) $_GET['bulan'] = 0 ?>
-                                    <option value="01" <?php if($_GET['bulan'] == '01') echo 'selected' ?>>Januari</option>
-                                    <option value="02" <?php if($_GET['bulan'] == '02') echo 'selected' ?>>Februari</option>
-                                    <option value="03" <?php if($_GET['bulan'] == '03') echo 'selected' ?>>Maret</option>
-                                    <option value="04" <?php if($_GET['bulan'] == '04') echo 'selected' ?>>April</option>
-                                    <option value="05" <?php if($_GET['bulan'] == '05') echo 'selected' ?>>Mei</option>
-                                    <option value="06" <?php if($_GET['bulan'] == '06') echo 'selected' ?>>Juni</option>
-                                    <option value="07" <?php if($_GET['bulan'] == '07') echo 'selected' ?>>Juli</option>
-                                    <option value="08" <?php if($_GET['bulan'] == '08') echo 'selected' ?>>Agustus</option>
-                                    <option value="09" <?php if($_GET['bulan'] == '09') echo 'selected' ?>>September</option>
-                                    <option value="10" <?php if($_GET['bulan'] == '10') echo 'selected' ?>>Oktober</option>
-                                    <option value="11" <?php if($_GET['bulan'] == '11') echo 'selected' ?>>November</option>
-                                    <option value="12" <?php if($_GET['bulan'] == '12') echo 'selected' ?>>Desember</option>
+                                    <option value="01" <?php if(($_GET['bulan'] == '01') || ($bulan == '01')) echo 'selected' ?>>Januari</option>
+                                    <option value="02" <?php if($_GET['bulan'] == '02' || ($bulan == '02')) echo 'selected' ?>>Februari</option>
+                                    <option value="03" <?php if($_GET['bulan'] == '03' || ($bulan == '03')) echo 'selected' ?>>Maret</option>
+                                    <option value="04" <?php if($_GET['bulan'] == '04' || ($bulan == '04')) echo 'selected' ?>>April</option>
+                                    <option value="05" <?php if($_GET['bulan'] == '05' || ($bulan == '05')) echo 'selected' ?>>Mei</option>
+                                    <option value="06" <?php if($_GET['bulan'] == '06' || ($bulan == '06')) echo 'selected' ?>>Juni</option>
+                                    <option value="07" <?php if($_GET['bulan'] == '07' || ($bulan == '07')) echo 'selected' ?>>Juli</option>
+                                    <option value="08" <?php if($_GET['bulan'] == '08' || ($bulan == '08')) echo 'selected' ?>>Agustus</option>
+                                    <option value="09" <?php if($_GET['bulan'] == '09' || ($bulan == '09')) echo 'selected' ?>>September</option>
+                                    <option value="10" <?php if($_GET['bulan'] == '10' || ($bulan == '10')) echo 'selected' ?>>Oktober</option>
+                                    <option value="11" <?php if($_GET['bulan'] == '11' || ($bulan == '11')) echo 'selected' ?>>November</option>
+                                    <option value="12" <?php if($_GET['bulan'] == '12' || ($bulan == '12')) echo 'selected' ?>>Desember</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary my-auto">Lihat</button>
                             </div>

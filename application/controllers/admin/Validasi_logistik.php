@@ -30,8 +30,10 @@ class Validasi_logistik extends CI_Controller {
         $validasi = $this->validasi_logistik_model->verif_validasi_logistik($data, $id);
 
         if($validasi) {
+            $this->session->set_flashdata('notif_validasi', '<span class="alert alert-success">Anda berhasil memvalidasi logistik</span>');
             redirect(base_url('admin/validasi_logistik'));
         } else {
+            $this->session->set_flashdata('notif_validasi', '<span class="alert alert-danger">Anda gagal memvalidasi logistik</span>');            
             redirect(base_url('admin/validasi_logistik'));
         }
     }

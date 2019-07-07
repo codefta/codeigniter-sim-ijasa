@@ -10,8 +10,10 @@
 <?php $this->load->view('admin/templates/navbar') ?>
 <!-- End Navbar -->
 
-        <?php if($this->session->flashdata('notif_logistik')) : ?>
-          <div class="notif"></div>
+        <?php if($this->session->flashdata('users_notif')) : ?>
+          <div class="mb-3">
+            <?= $this->session->flashdata('users_notif') ?>
+          </div>
         <?php endif ?>
 
         <!-- DataTales Example -->

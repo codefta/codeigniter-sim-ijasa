@@ -21,23 +21,20 @@ class Kebutuhan extends CI_Controller {
             $tahun = date('Y');
         }
 
+        if(empty($bulan)) {
+            $bulan = date('m');
+        }
+
         $kebutuhan = array(
             'sandang' =>  $this->kebutuhan_model->get_kebutuhan_sandang($tahun, $bulan)['jumlah'],
             'papan' =>  $this->kebutuhan_model->get_kebutuhan_papan($tahun, $bulan)['jumlah'],
             'pangan' => $this->kebutuhan_model->get_kebutuhan_pangan($tahun, $bulan)['jumlah'],
         );
 
-        // var_dump($kebutuhan);
-        // die();
-
-
         $data['tahun'] = $tahun;
+        $data['bulan'] = $bulan;
         $data['kebutuhan'] = $kebutuhan;
         $data['title'] = 'Statistik / Kebutuhan Bencana';
         $this->load->view('admin/statistik/kebutuhan/index', $data);
-    }
-
-    public function stat_donatur_belum_berdonasi() {
-
     }
 }

@@ -29,12 +29,22 @@ class Logistik_bencana_model extends CI_Model {
                         ->where("info_bencana_id = $id")
                         ->group_by("logistik_bencana.jenis_logistik_id")
                         ->get()->result_array();
-        // return $this->db->get_where('logistik_bencana', ['info_bencana_id' => $id])->row_array();
+    }
+
+    public function get_logistik_bencana_edit_id($id) {
+        return $this->db->select('jenis_logistik.id id_logistik, jenis_logistik.nama nama_logistik, jenis_logistik.jenis jenis_logistik, sum(logistik_bencana.jumlah) jumlah, logistik_bencana.id id_utama')
+                        ->from('logistik_bencana')
+                        ->join('jenis_logistik', 'jenis_logistik.id = logistik_bencana.jenis_logistik_id')
+                        ->where("info_bencana_id = $id")
+                        ->group_by("logistik_bencana.id")
+                        ->get()->result_array();
     }
 
     public function insert_logistik_bencana($data) {
         return $this->db->insert_batch('logistik_bencana', $data);
     }
 
-    
+    public function replace_logistik_bencana($data_kebutuhan) {
+        return $this->db->replace('logistik_bencana', $data_kebutuhan);
+    }
 }

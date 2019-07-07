@@ -7,9 +7,9 @@
           </div>
           <div class="sidebar-brand-text text-left ml-2"><small class="text-light text-">Sistem Informasi Donasi Logistik Bencana</small></div>
         </a>
-
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider my-0 mb-3">
+        <?php if($this->session->userdata('admin_loggedin')['role'] == 'Admin') : ?>
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item <?php if($this->uri->segment(1) == 'admin' && ($this->uri->segment(2) == '' || $this->uri->segment(2) == 'dashboard')) echo 'active'?>">
@@ -26,9 +26,18 @@
         </div>
 
         <li class="nav-item <?php if($this->uri->segment(2) == 'spk' ) echo 'active'?>">
-          <a class="nav-link" href="<?= base_url("admin/spk") ?>">
+          <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapsePrioritas" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-exclamation-circle"></i>
             <span>Prioritas Kebutuhan</span></a>
+          </a>
+          <div id="collapsePrioritas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+              <a class="collapse-item <?php if(current_url() == base_url('admin/spk/prioritas') ) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas') ?>">Penghitungan</a>
+              <a class="collapse-item <?php if(current_url() == base_url('admin/spk/prioritas/domain') ) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas/domain') ?>">Domain</a>
+              <a class="collapse-item <?php if((current_url() == base_url('admin/spk/prioritas/aturan')) || (current_url() == base_url('admin/spk/prioritas/tambah_aturan'))) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas/aturan') ?>">Aturan</a>
+            </div>
+          </div>
         </li>
 
         <div class="sidebar-heading">
@@ -50,7 +59,7 @@
             </div>
           </div>
         </li>
-
+        <?php endif ?>
         <!-- Heading -->
         <div class="sidebar-heading">
           Menu Utama
@@ -68,28 +77,12 @@
             <span>Validasi Logistik</span></a>
         </li>
 
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <!-- <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
-          </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Custom Components:</h6>
-              <a class="collapse-item" href="buttons.html">Buttons</a>
-              <a class="collapse-item" href="cards.html">Cards</a>
-            </div>
-          </div>
-        </li> -->
-
         <li class="nav-item <?php if($this->uri->segment(1) == 'admin' && $this->uri->segment(2) == 'profil' ) echo 'active'?>">
           <a class="nav-link" href="<?= base_url("admin/profil") ?>">
             <i class="fas fa-user"></i>
             <span>Profil Saya</span></a>
         </li>
-
+        <?php if($this->session->userdata('admin_loggedin')['role'] == 'Admin') : ?>
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -111,6 +104,8 @@
             <i class="fas fa-users"></i>
             <span>Manajemen Akun</span></a>
         </li>
+
+        <?php endif ?>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

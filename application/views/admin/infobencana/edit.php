@@ -117,15 +117,20 @@
                     </div>
 
                     <div class="col-md-12" id="logistik_wrapper">
-                      
+                      <label><b>Kebutuhan Bencana</b></label>
                     </div>
 
-                    <div class="col-md-12 pr-3" id="logistik_add_button">
+                    <div class="col-md-12 pr-3">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <a href="javascript:void(0)" id="addButton" class="badge badge-success">Tambah jenis logistik</a>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="col-md-12 pr-3">
                         <div class="text-right">
-                            <a href="<?= base_url('jenis_logistik') ?>" class="btn btn-danger">Batal</a>
+                            <a href="<?= base_url('admin/infobencana') ?>" class="btn btn-danger">Batal</a>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
@@ -145,100 +150,165 @@
 
     <!-- Additional JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-
     <script>
+      var x = 1;
       $(function() {
-        // let maxField = 10;
-        // let addButton = $('#addButton');
-        // let wrapper = $('#logistik_wrapper');
-        // var x = 1;
-
-        // $(addButton).click(function() {
-        //   if(x < maxField) {
-        //     x++;
-        //     $(wrapper).append(
-        //       `<div class="row">
-        //         <div class="col-md-3 pr-3">
-        //           <div class="form-group">
-        //             <select name="jenis_logistik[]" id="jenis_logistik`+ x +`" class="form-control">
-        //               <option value="">Pilih jenis logistik</option>
-        //               <?php foreach($logistik as $data) : ?>
-        //                 <option value="<?= $data['jenis'] ?>"><?= $data['jenis'] ?></option>
-        //               <?php endforeach ?>
-        //             </select>
-        //             <small class="text-danger"><?= form_error('jenis_logistik[]') ?></small>
-        //           </div>
-        //         </div>
-        //         <div class="col-md-3 pr-3">
-        //           <div class="form-group">
-        //             <select name="nama_logistik[]" id="nama_logistik`+ x +`" class="form-control">
-        //               <option value="">Pilih nama logistik</option>
-        //             </select>
-        //             <small class="text-danger"><?= form_error('nama_logistik[]') ?></small>
-        //           </div>
-        //         </div>
-        //         <div class="col-md-3 pr-3">
-        //           <div class="form-group">
-        //             <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah">
-        //             <small class="text-danger"><?= form_error('jumlah_logistik[]') ?></small>
-        //           </div>
-        //         </div>
-        //         <div class="col-md-2">
-        //           <a href="javascript:void(0)" id="removeButton" class="badge badge-danger">Hapus</a>
-        //         </div>
-        //       </div>`
-        //     );
-
-        //     $("#jenis_logistik"+x).change(function() {
-        //       $.ajax({
-        //         method: 'POST',
-        //         url: "<?= base_url('api/logistik') ?>",
-        //         data: {jenis_logistik: $("#jenis_logistik"+x).val()},
-        //         dataType: 'json',
-        //         success: function(response){
-        //             $('#nama_logistik'+x).html(response.nama_logistik).show();
-        //         },
-        //         error: function(xhr, ajaxOptions, thrownError){
-        //               alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
-        //             }
-        //         });
-        //       });
-        //   }
-        // });
-
-        // $(wrapper).on('click', '#removeButton', function(e) {
-        //   e.preventDefault();
-        //   $(this).parent('div').parent('.row').remove();
-        //   x--;
-        // })
-
-        // Get Jenis Logistik
         $.ajax({
           method: 'POST',
-          url: "<?= base_url('api/logistik/update') ?>",
-          data: {jenis_logistik: $("#jenis_logistik").val()},
+          url: "<?= base_url('admin/infobencana/get_jenis_logistik') ?>",
           dataType: 'json',
           success: function(response){
-              
-              var valueNamaOld = $("#namaLogistikOld").val();
-
-              // console.log(valueNamaOld);
-              // console.log(response);
-
-              nama_log = "<option>Pilih nama logistik</option>";
-              for(let key in response.nama_logistik) {
-                // console.log(response.nama_logistik[key]);
-                selected = key == valueNamaOld ? "selected" : "";
-                nama_log += "<option value='"+key+"'"+selected+">"+response.nama_logistik[key]+"</option>";
-              }
-              // console.log(nama_log);
-              $('#nama_logistik').html(nama_log).show();
-          },
-          error: function(xhr, ajaxOptions, thrownError){
-              alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
+              bencana(response.data);
           }
         });
-        
+
+        function nama_logistik() {
+
+        }
+
+        function bencana(jenis_logistik) {
+          $.ajax({
+          method: 'POST',
+          url: "<?= base_url() ?>admin/infobencana/get_logistik_bencana/<?= $infobencana['id'] ?>",
+          dataType: 'json',
+          success: function(response) {
+            var selected = '';
+            var jenis_option = '';
+            response.data.forEach(function(item, index){
+
+              jenis_logistik.forEach(function(value, key) {
+                if(item.jenis_logistik == value.jenis) {
+                  selected = 'selected';
+                }
+                
+                jenis_option += '<option value='+value.jenis+' '+selected+'>'+value.jenis+'</option>';
+              });
+              getNamaLog(item.id_utama, item.id_logistik, item.jenis_logistik, item.nama, item.jumlah, jenis_option, x);
+              
+            x++;
+            });
+
+            addJenisLogistik(x);
+
+          }
+        });
+        }
+      }); 
+
+      function getNamaLog(id_utama, id, jenis, nama, jumlah, jenis_option, x) {
+        $.ajax({
+          method: 'POST',
+          url: "<?= base_url('admin/infobencana/get_nama_logistik/') ?>"+jenis,
+          dataType: 'json',
+          success: function(response){
+            var selected = '';
+            var nama_option = '';
+            response.data.forEach(function(item, index) {
+              if(item.nama == nama ) {
+                selected = 'selected';
+              }
+              nama_option += '<option value='+item.id+' '+selected+'>'+item.nama+'</option>';
+            });
+
+            $("#logistik_wrapper").append(
+              `<div class="row">
+                <div class="col-md-3 pr-3">
+                  <div class="form-group">
+                    <select name="jenis_logistik[]" id="jenis_logistik`+x+`" class="form-control">
+                      `+jenis_option+`
+                    </select>
+                    <input type="hidden" value="`+id_utama+`" name="id_utama[]">
+                    <small class="text-danger"><?= form_error('jenis_logistik[]') ?></small>
+                  </div>
+                </div>
+                <div class="col-md-3 pr-3">
+                  <div class="form-group">
+                    <select name="nama_logistik[]" id="nama_logistik`+x+`" class="form-control">
+                      `+nama_option+`
+                    </select>
+                    <input type="hidden" value="`+id+`" name="id[]">
+                    <small class="text-danger"><?= form_error('nama_logistik[]') ?></small>
+                  </div>
+                </div>
+                <div class="col-md-3 pr-3">
+                  <div class="form-group">
+                    <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah" value="`+jumlah+`">
+                    <small class="text-danger"><?= form_error('jumlah_logistik[]') ?></small>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <a href="javascript:void(0)" id="removeButton" class="badge badge-danger">Hapus</a>
+                </div>
+              </div>`
+            );
+          }
+        });
+      }
+
+      function addJenisLogistik(x) {
+        let maxField = 10;
+        let addButton = $('#addButton');
+        let wrapper = $('#logistik_wrapper');
+
+        $(addButton).click(function() {
+          if(x < maxField) {
+            x++;
+            $(wrapper).append(
+              `<div class="row">
+                <div class="col-md-3 pr-3">
+                  <div class="form-group">
+                    <select name="jenis_logistik[]" id="jenis_logistik`+ x +`" class="form-control">
+                      <option value="">Pilih jenis logistik</option>
+                      <?php foreach($logistik as $data) : ?>
+                        <option value="<?= $data['jenis'] ?>"><?= $data['jenis'] ?></option>
+                      <?php endforeach ?>
+                    </select>
+                    <small class="text-danger"><?= form_error('jenis_logistik[]') ?></small>
+                  </div>
+                </div>
+                <div class="col-md-3 pr-3">
+                  <div class="form-group">
+                    <select name="nama_logistik[]" id="nama_logistik`+ x +`" class="form-control">
+                      <option value="">Pilih nama logistik</option>
+                    </select>
+                    <small class="text-danger"><?= form_error('nama_logistik[]') ?></small>
+                  </div>
+                </div>
+                <div class="col-md-3 pr-3">
+                  <div class="form-group">
+                    <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah">
+                    <small class="text-danger"><?= form_error('jumlah_logistik[]') ?></small>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <a href="javascript:void(0)" id="removeButton" class="badge badge-danger">Hapus</a>
+                </div>
+              </div>`
+            );
+
+            $("#jenis_logistik"+x).change(function() {
+              $.ajax({
+                method: 'POST',
+                url: "<?= base_url('api/logistik') ?>",
+                data: {jenis_logistik: $("#jenis_logistik"+x).val()},
+                dataType: 'json',
+                success: function(response){
+                    $('#nama_logistik'+x).html(response.nama_logistik).show();
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                      alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
+                    }
+                });
+              });
+          }
+        });
+
+        $(wrapper).on('click', '#removeButton', function(e) {
+          e.preventDefault();
+          $(this).parent('div').parent('.row').remove();
+          x--;
+        })
+
         $("#jenis_logistik").change(function() {
           $.ajax({
             method: 'POST',
@@ -246,28 +316,14 @@
             data: {jenis_logistik: $("#jenis_logistik").val()},
             dataType: 'json',
             success: function(response){
-                
-                var valueNamaOld = $("#namaLogistikOld").val();
-
-                // console.log(valueNamaOld);
-                // console.log(response);
-
-                nama_log = "<option>Pilih nama logistik</option>";
-                for(let key in response.nama_logistik) {
-                  // console.log(response.nama_logistik[key]);
-                  selected = key == valueNamaOld ? "selected" : "";
-                  nama_log += "<option value='"+key+"'"+selected+">"+response.nama_logistik[key]+"</option>";
-                }
-                // console.log(nama_log);
-                $('#nama_logistik').html(nama_log).show();
+                $('#nama_logistik').html(response.nama_logistik).show();
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert(xhr.status + "\n" + xhr.responseText + "\n" +thrownError);
             }
           });
         });
-
-      });
+      }
     </script>
 
     <script>

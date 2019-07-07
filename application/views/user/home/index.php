@@ -44,7 +44,7 @@
           <div class="card shadow border-0">
             <img class="" style="height: 20vw" src="<?= base_url().'uploads/infobencana/'.$item['foto'] ?>" alt="">
             <div class="card-body" >
-              <h5><?= $item['nama'] ?></h5>
+              <h5><?= "<b>".substr($item['nama'], 0, 50).'...</b>' ?></h5>
               <p><?= substr($item['deskripsi'], 0, 100)  ?></p>
               <div class="float-right">
                 <!-- <a href="" class="btn btn-success p-2">Donasi</a> -->

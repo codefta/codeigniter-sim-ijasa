@@ -40,10 +40,10 @@ class Jenis_logistik extends CI_Controller {
             $save = $this->jenis_logistik_model->insert_jenis_logistik($data);
 
             if($save) {
-                $this->session->set_flashdata('notif_logistik', 'Anda telah berhasil menambah logistik');
+                $this->session->set_flashdata('notif_logistik', '<span class="alert alert-success">Anda telah berhasil menambah logistik</span>');
                 redirect(base_url('admin/jenis_logistik'));
             } else {
-                $this->session->set_flashdata('notif_logistik', 'Anda gagal menambah logistik');
+                $this->session->set_flashdata('notif_logistik', '<span class="alert alert-danger">Anda gagal menambah logistik</span>');
                 redirect(base_url('admin/jenis_logistik'));
             }
         }
@@ -67,10 +67,10 @@ class Jenis_logistik extends CI_Controller {
         $update = $this->jenis_logistik_model->update_jenis_logistik($id, $data);
 
         if($update) {
-            $this->session->set_flashdata('notif_logistik', 'Anda telah berhasil mengubah logistik');
+            $this->session->set_flashdata('notif_logistik', '<span class="alert alert-success">Anda telah berhasil mengubah logistik</span>');
             redirect(base_url('admin/jenis_logistik'));
         } else {
-            $this->session->set_flashdata('notif_logistik', 'Anda gagal mengubah logistik');
+            $this->session->set_flashdata('notif_logistik', '<span class="alert alert-danger">Anda gagal mengubah logistik</span>');
             redirect(base_url('admin/jenis_logistik'));
         }
     }
@@ -79,10 +79,10 @@ class Jenis_logistik extends CI_Controller {
         $delete = $this->jenis_logistik_model->delete_jenis_logistik($id);
 
         if($delete) {
-            $this->session->set_flashdata('notif_logistik', 'Anda telah berhasil menghapus logistik');
+            $this->session->set_flashdata('notif_logistik', '<span class="alert alert-success">Anda telah berhasil menghapus logistik</span>');
             redirect(base_url('admin/jenis_logistik'));
         } else {
-            $this->session->set_flashdata('notif_logistik', 'Anda gagal menghapus logistik');
+            $this->session->set_flashdata('notif_logistik', '<span class="alert alert-danger">Anda gagal menghapus logistik</span>');
             redirect(base_url('admin/jenis_logistik'));
         }
     }
