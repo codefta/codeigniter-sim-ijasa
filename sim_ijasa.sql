@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 26, 2019 at 10:53 PM
+-- Generation Time: Jul 07, 2019 at 08:40 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `sim_ijasa`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aturan`
+--
+
+CREATE TABLE `aturan` (
+  `id` int(11) NOT NULL,
+  `ba` varchar(50) DEFAULT NULL,
+  `bl` varchar(50) DEFAULT NULL,
+  `bp` varchar(50) DEFAULT NULL,
+  `hasil` varchar(50) DEFAULT NULL,
+  `operator` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `aturan`
+--
+
+INSERT INTO `aturan` (`id`, `ba`, `bl`, `bp`, `hasil`, `operator`) VALUES
+(1, 'rendah', 'tinggi', 'tinggi', 'tinggi', 'and'),
+(3, 'rendah', 'tinggi', 'rendah', 'tinggi', 'or');
 
 -- --------------------------------------------------------
 
@@ -7260,6 +7283,26 @@ INSERT INTO `districts` (`id`, `regency_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `domain`
+--
+
+CREATE TABLE `domain` (
+  `rendah` int(11) NOT NULL,
+  `tinggi` int(11) NOT NULL,
+  `b_atas` int(11) NOT NULL,
+  `b_bawah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `domain`
+--
+
+INSERT INTO `domain` (`rendah`, `tinggi`, `b_atas`, `b_bawah`) VALUES
+(1, 100, 80, 20);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `donasi_logistik`
 --
 
@@ -7271,14 +7314,6 @@ CREATE TABLE `donasi_logistik` (
   `user_id` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `donasi_logistik`
---
-
-INSERT INTO `donasi_logistik` (`id`, `tgl_donasi`, `tgl_verifikasi`, `info_bencana_id2`, `user_id`, `status`) VALUES
-(5, '2019-06-17 06:24:13', '2019-06-12 13:28:15', 8, 6, 1),
-(6, '2019-06-17 06:24:06', '2019-06-12 13:18:33', 8, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -7304,9 +7339,17 @@ CREATE TABLE `info_bencana` (
 --
 
 INSERT INTO `info_bencana` (`id`, `nama`, `deskripsi`, `provinsi_id`, `kota_id`, `kecamatan_id`, `desa_id`, `foto`, `created_at`, `modified_at`) VALUES
-(10, 'Bencana 1', 'Lorem ipsum', '34', '3403', '3403080', '3403080006', 'bencana_default.png', '2019-06-26 03:21:24', NULL),
-(11, 'Bencana 1', 'Lorem ipsum', '34', '3403', '3403080', '3403080006', 'bencana_default.png', '2019-06-26 03:21:41', NULL),
-(13, 'Bencana 6', 'Lorem psu', '32', '3210', '3210080', '3210080005', 'Bencana_61561562336.png', '2019-06-26 15:18:56', NULL);
+(14, 'Angin Kencang Terjang D.I.Yogyakarta', 'Yogyakarta, 15 Maret 2019. Beberapa minggu belakangan, wilayah D.I.Yogyakarta terus di guyur hujan deras, tidak hanya hujan dengan intensitas deras, namun hujan juga di sertai angin kencang. Seperti yang terjadi pada di wilayah D.I.Yogyakarta. Terpantau pada sore hari Kabupaten Sleman, Gunung Kidul dan Kota Yogyakarta di terjang angin kencang. Update data kejadian angin kencang pertanggal 14 Maret 2019, mengakibatkan 13 Kecamatan, 71 Desa/Kelurahan dan 71 Dusun terdampak dan menyebabkan korban 1 luka berat, 8 luka sedang dan 4 luka ringan. Bahkan terpantau 259 pohon tumbang, 172 rumah rusak ringan, 11 tempat usaha terdampak, 44 jaringan listrik putus dan 17 kandang roboh.\r\n\r\n \r\n\r\nSetelah menerima laporan dari masyarakat mengenai banyaknya kejadian yang terjadi di sekitarnya, Tim Reaksi Cepat (TRC) BPBD D.I.Yogyakarta segera melakukan penanganan dengan terjun langsung ke lokasi kejadian. Bersama dengan TRC Kabupaten, TRC Kota Yogyakarta serta masyarakat setempat, TRC bahu-membahu membuka akses jalan dan juga menangani bangunan yang terdampak angin kencang.\r\n\r\n \r\n\r\nLalu bagaimana mitigasi guna menghindari jatuhnya korban saat terjadi angin kencang? Berikut tips ketika terjadi angin kencang:\r\n\r\n- Jika anda berada di dalam ruangan:\r\n\r\n1. Tutup dan kunci pintu dan jendela.\r\n\r\n2. Matikan semua aliran listrik dan saluran gas.\r\n\r\n3. Berlindung ditempat aman, seperti di tengah ruangan dan jangan mendekati pintu atau jendela.\r\n\r\n4. Jauhi barang-barang yang dapat menghantarkan arus listrik.\r\n\r\n \r\n\r\n- Jika anda berada di luar ruangan:\r\n\r\n1. Cari tempat yang aman, jangan berlindung di dekat pohon besar, ada baiknya anda tiarap di tempat yang rendah, seperti dekat saluran air dan sejenisnya. Jangan lupa tetap lindungi kepala anda dengan lengan anda.\r\n\r\n2. Usahakan jangan berlindung di bawah jembatan atau jalan layang, hal tersebut perlu dihindari karena angin besar bisa saja meruntuhkan jembatan tersebut.\r\n\r\n3. Hindari mengendarai kendaraan (khususnya pengendara roda dua) saat akan menghindar dari angin kencang. ada baiknya menepi dan berlindung hingga angin mulai mereda.\r\n\r\n4. Waspadai terhadap benda benda yang diterbangkan angin puting beliung. Hal ini dapat menyebabkan kematian dan cedera serius.\r\n\r\n \r\n\r\n- Bila anda sedang berkendara:\r\n\r\n1. Jika angin kencang terjadi, berhentilah di samping jalan dan cari tempat yang aman, jauhi pohon, tiang listrik, tiang telepon dan hal lain yang mudah roboh.\r\n\r\n2. Jika anda berada di kendaraan roda empat, menepilah dan tetap berada di dalam kendaraan dengan menyalakan lampu hazard.\r\n\r\nSumber: Berbagai Sumber\r\n\r\n \r\n\r\n \r\n\r\n(Kholiq Rahman/MEDIA CENTER BPBD DIY/Annas S)', '34', '3404', '3404100', '3404100004', 'bencana_default.png', '2019-07-02 10:04:11', NULL),
+(15, 'Ditinggal Nonton Televisi, Dapur Rumah Sutopo Ambrol, Perkakas Berjatuhan ke Sungai', 'Laporan Reporter Tribun Jogja Alexander Ermando\r\n\r\nSabtu, 23 maret 2019. Sebagian bangunan rumah milik Sutopo, warga Dusun Jenengan RT 04/19, Pondokrejo, Tempel rontok ke tanah. Peristiwa tersebut terjadi saat hujan deras melanda pada Sabtu (23/03/2019) malam.\r\n\r\nSaat Tribunjogja.com mendatangi rumah Sutopo pada Minggu (24/03/2019) siang, sisa-sisa longsoran tersebut masih terlihat jelas. Lokasinya di belakang bangunan rumah, persis di pinggir kali.\r\n\r\nSutopo menceritakan bahwa saat itu ia sedang berada di ruang tengah menonton televisi. Ia juga baru saja menidurkan anaknya yang kecil.\r\n\r\n\"Saat itu sekitar jam 8 malam, tiba-tiba suara gemuruh keras datang dari belakang rumah. Begitu saya ke situ, sebagian alat dapur sudah jatuh,\" tutur bapak dua anak ini.\r\n\r\nSegera setelah kejadian, Sutopo lalu mendatangi Lurah setempat. Mereka akhirnya langsung mengontak BPBD Sleman untuk membantu proses penanganan longsor tersebut.', '34', '3404', '3404140', '3404140004', 'Ditinggal_Nonton_Televisi,_Dapur_Rumah_Sutopo_Ambrol,_Perkakas_Berjatuhan_ke_Sungai1562079539.png', '2019-07-02 10:27:49', NULL),
+(16, 'Bencana Angin Kencang di Magelang, 7 Rumah Rusak Ringan, Puluhan Pohon Tumbang', 'Hujan deras disertai angin kencang melanda sejumlah wilayah di Kabupaten Magelang, Kamis (24/1/2019).\r\n\r\nAkibatnya, puluhan pohon tumbang menimpa rumah dan jaringan listrik di empat kecamatan yakni di Salaman, Mungkid, Mertoyudan, dan Borobudur.\r\n\r\nTujuh rumah rusak ringan, listrik padam di sejumlah wilayah, dan beberapa ruas jalan sempat tertutup aksesnya akibat kejadian ini.\r\n\r\nKepala Pelaksana Badan Penanggulangan Bencana Daerah (BPBD) Kabupaten Magelang, Edy Susanto, mengatakan, hujan dengan intensitas lebat disertai angin kencang terjadi di sejumlah wilayah di Kabupaten Magelang, sejak pukul 14.00 WIB siang tadi.\r\n\r\nAkibatnya, puluhan pohon tumbang menutup akses jalan, menimpa rumah warga dan jaringan listrik milik PLN di 20 titik lokasi di kurang lebih empat kecamatan, yakni di Salaman, Mungkid, Mertoyudan, dan Borobudur.\r\n\r\n\"Hujan dengan intensitas lebat disertai angin kencang yang terjadi di wilayah Kabupaten Magelang pada hari Kamis 24 Januari 2019 sejak pukul 14.00 WIB mengakibatkan beberapa pohon tumbang yang menutup akses jalan dan menimpa rumah serta menimpa jaringan listrik,\" ujar Edy pada Tribunjogja.com, Kamis (24/1/2019).\r\n\r\nTitik-titik bencana terjadi di 20 lokasi, yakni di Dusun Sumber, Desa Sidomulyo, Kecamatan Salaman, pohon tumbang menutup akses Jalan Purworejo- Magelang; Dusun Ngrajek, Desa Mendut, Kecamatan Mungkid, pohon tumbang; Dusun Jagan, Desa Pasuruhan, Kecamatan Mertoyudan, pohon tumbang menutup sebagian akses jalan Soekarno Hatta.\r\n\r\nKemudian di Dusun Deyangan, Desa Banar,Mungkid, pohon tumbang menimpa satu rumah dan menutup sebagian akses jalan; Dusun Kendal, Desa Rambeanak, Mungkid, pohon tumbang menimpa kabel listrik PLN; Dusun Ngaran, Desa Borobudur, Kecamatan Borobudur, pohon tumbang menimpa jaringan listrik PLN; Dusun Banar, Desa Rambeanak, Kecamatan Mungkid, pohon tumbang menimpa kabel listrik PLN; Dusun Karanganyar, Desa Rambeanak, Mungkid, pohon tumbang menutup akses jalan;\r\n\r\nLalu di Dusun Saron, Dusun Serak, Desa Rambeanak, Kecamatan Mungkid; Dusun Pabelan 1, Desa Pabelan Kecamatan Mungkid; Dusun Jangkungan , Desa Deyangan, Mertoyudan; Dusun Soko 1 , Desa Sokorini, Muntilan; Gentan , Donorejo, Mertoyudan; Plaosan , Donorejo, Mertoyudan; Dusun Kelon , Borobudur; Pronogaten, Kalinegoro, Mertoyudan; Tawangsari, Ngadiharjo, Borobudur; Desa Candirejo, Borobudur; dan Sojomerto Kidul, Sidomulyo, Salaman.\r\n\r\n\"Atas kejadian tersebut, kerusakan ringan terjadi pada tujuh rumah warga. Termasuk sejumlah pohon yang tumbang menutup akses jalan, dan menimpa jaringan listrik, sehingga listrik sempat padam di beberapa wilayah,\" ujar Edy.\r\n\r\nEdy mengatakan, pihaknya langsung melakukan kaji cepat dan berkoordinasi dengan pihak PLN, Bina Marga Provinsi, PDAM, DPU PR Kabupaten Magelang untuk melakukan pembersihan dan pemotongan batang pohon.\r\n', '33', '3308', '3308010', '3308010006', 'Bencana_Angin_Kencang_di_Magelang,_7_Rumah_Rusak_Ringan,_Puluhan_Pohon_Tumbang1562079526.png', '2019-07-02 10:38:32', NULL),
+(17, 'Hujan Lebat, Jalur Trans-Sulawesi Tak Dapat Dilintasi, 100 Rumah Terendam', 'PALU, SULAWESI TENGAH (VOA) — \r\nJalan raya trans Sulawesi yang menghubungkan Sulawesi Tengah dan Sulawesi Tenggara di Kecamatan Lembo, Kabupaten Morowali Utara sejak Kamis siang (20/6) dilaporkan tidak dapat dilintasi kendaraan karena terendam banjir akibat meluapnya beberapa sungai. Kondisi ini memaksa para pengguna jalan, baik kendaraan pribadi, kendaraan umum maupun angkutan barang yang berasal dari tempat yang jauh; terpaksa bermalam di dalam kendaraan yang di parkir di tepi jalan, maupun lapangan terbuka, menunggu banjir surut.\r\n\r\nBanjir juga merendam sejumlah kendaraan roda empat yang tidak sempat diselamatkan ke tempat yang lebih aman karena berada di antrian terdepan ketika permukaan air terus meningkat.\r\n\r\nSatu SSK Polisi Dikerapkan untuk Amankan Pengguna Jalan & Evakuasi\r\n\r\nDihubungi VOA, Kepala Kepolisian Resort Morowali AKBP Dadan Wahyudi mengatakan banjir akibat meluapnya beberapa sungai itu ikut merendam badan jalan sejauh satu kilometer, dengan ketinggian air di atas satu meter. Satu satuan setingkat kompi Polres Morowali dikerahkan untuk memastikan pengamanan terhadap para pengguna jalan serta melakukan kegiatan evakuasi terhadap warga masyarakat terdampak banjir.\r\n\r\n“Sementara masih belum bisa melintas itu untuk daerah Korompeeli karena ketinggian air sudah mencapai ketinggian satu meter lebih kali ya, seleher orang dewasa. Jadi belum melintas di jalan trans Sulawesi,” jelas AKBP Dadan Wahyudi melalui telepon.', '72', '7203', '7203010', '3511141006', 'Hujan_Lebat,_Jalur_Trans-Sulawesi_Tak_Dapat_Dilintasi,_100_Rumah_Terendam1562079552.png', '2019-07-02 11:28:02', NULL),
+(18, 'Puluhan Rumah di Bekasi Rusak Akibat Abrasi', 'Bekasi - Puluhan rumah di Kampung Muarajaya RT01/RW01, Muaragembong, Kabupaten Bekasi, rusak akibat abrasi. Warga harus rela meninggalkan kediaman yang sudah ditempati selama bertahun-tahun.\r\n\r\nSalah satu warga terdampak abrasi di Kampung Muarajaya, Firman (35) di Bekasi, mengatakan, sekitar 10 tahun yang lalu terdapat puluhan rumah di kampungnya. Namun, rumahnya bersama sekitar 50 rumah lainnya hilang tersapu air saat terjadi abrasi. Sehingga, ia bersama warga lainnya harus pindah ke Kampung Baru di RT02/01, Desa Pantaimekar.\r\n\r\n\"Dulu di sini (Kampung Muarajaya) paling ramai, banyak nelayan dari mana-mana, motor juga bisa masuk. Tapi semua berubah setelah abrasi datang,\" kata Firman yang dilansir dari Antara, Minggu (16/6/2019).\r\n\r\nSelama 10 tahun abrasi menyerang, dirinya mengaku tidak ada penanganan berarti dari pemerintah daerah. Kendati begitu, saat ini di lokasi abrasi masih ada sebagian warga yang memilih untuk tetap bertahan di rumahnya meski sudah sepi penghuni.\r\n\r\nCamat Muaragembong, Junaefi mengatakan, sejauh ini penanganan abrasi sudah dicoba untuk dilakukan dengan cara menanam pohon bakau (mangrove) di tepi pantai. Langkah tersebut, menurutnya, cukup ampuh karena mampu mengurangi abrasi yang kini mengancam warga di pesisir pantai.', '32', '3216', '3216150', '3216150002', 'bencana_default.png', '2019-07-02 11:37:00', NULL),
+(19, 'Sebuah Rumah di Ciputat Tertimbun Longsor, Balita Tewas', 'Jakarta - Sebuah rumah di Ciputat, Tangerang Selatan, tertimbun longsor menimpa kakak-beradik dan seorang pembantu rumah tangga (PRT). Sang kakak dan PRT berhasil diselamatkan, sementara sang adik tewas.\r\n\r\n\"Korban berinisial N (3) anak kedua dari pasangan suami-istri Bapak Suryo (37) dan Ibu Sandra (39),\" kata Kasat Reskrim Polres Tangsel AKP Alexander Ahmad Yurikho dalam keterangan kepada detikcom, Jumat (27/4/2019).\r\n\r\nPeristiwa nahas itu terjadi pada Jumat (26/4) di Perumahan Bukit Nusa Indah, Jalan Bougenvil, Kelurahan Serua, Ciputat, Tangerang Selatan. Saat itu kondisi cuaca di lokasi sedang hujan deras.\r\n\r\n\"Pada saat hujan deras korban beserta kakak dan PRT berada di dalam rumahnya sedang menonton televisi,\" kata Alex.\r\n\r\nKorban posisinya berada di ruang tamu, sementara kakaknya dan PRT sedang berada di dalam kamar. Sekitar pukul 17.28 WIB tiba-tiba rumah tersebut tertimpa longsoran tanah sehingga menutupi sebagian rumahnya.\r\n\r\n\"Longsor dari tembok/turab penahan tanah sebelah kiri milik Perumahan Bukit Nusa Indah yang menimpa ruang tamu rumah korban,\" lanjutnya.', '36', '3671', '3671010', '3511141007', 'bencana_default.png', '2019-07-02 11:51:22', NULL),
+(20, 'Ada Longsor Susulan di Cimahi, Korban dan Tetangga Mengungsi', 'Cimahi - Sejumlah warga berkerumun di lokasi longsor yang menerjang rumah milik Yono (55) di Kampung Awi Gombong, Kelurahan Citeureup, Kecamatan Cimahi Utara, Kota Cimahi.\r\n\r\nSebelumya, longsor menyebabkan rumah yang ditinggali Yono dan ketujuh keluarganya roboh. Dua orang tewas akibat tertimpa reruntuhan bangunan, sementara keenam lainnya mengalami luka-luka.\r\n\r\nantauan detikcom, garis polisi terpasang beberapa belas meter dari rumah Yono. Garis berwarna kuning itu juga dipasang di rumah Unday Sutrisna dan Agus Triana yang berada di samping rumah Yono.\r\n\r\nKedua rumah tersebut juga beresiko terkena longsor susulan dari atas bukit yang berada di belakang rumah Yono. \"Keduanya juga takut terkena longsor susulan, untuk sementara diungsikan ke rumah Ustaz Abdul Kahar,\" ujar Caca dari Tagana Kota Cimahi kepada detikcom, Sabtu (27/4/2019)\r\n\r\nSementara itu Affandi (57), tetangga yang ikut mengevakuasi korban mengatakan kondisi kedua korban berdekatan. Mereka adalah Irna (14) dan Kekey (2) yang ditemukan di balik reruntuhan kamar.\r\n\r\n\"Keduanya ditemukan dalam kondisi meninggal. Saya mengambil keduanya dari dalam reruntuhan di balik bata-bata, yang SMP (Irna) ditemukan dalam kondisi selonjor, sedangkan yang bayi (Kekey) ada di depannya,\" kata Affandi saat ditemui di rumah duka.\r\n\r\nSedangkan keenam orang penghuni rumah lainnya berhasil melarikan diri. \"Yang lainnya berhasil ke luar dari rumah dengan selamat walau ada luka-luka,\" katanya.\r\n\r\nSetelah itu, warga dibantu tukang ojek di sekitar lokasi bencana segera membawa korban ke RSUD Cibabat menggunakan sepeda motor. \"Kondisi jalan menuju rumah sakit kemarin malam macet sekali, akhirnya korban ada yang berjalan dan digendong,\" ucapnya.\r\n\r\nKeenam orang lainnya yang masih dirawat di rumah sakit. Mereka adalah Yono, Wawa (52), Uci (17), Husen (35), Kania (6) dan Andri (30). \"Yang luka ringan sudah pulang, kalau Pak Yono dijahit di bagian kepalanya, Bu Wawa ada luka di kaki,\" katanya.', '32', '3277', '3277030', '3277030003', 'bencana_default.png', '2019-07-02 12:05:33', NULL),
+(21, 'Banjir dan Longsor Melanda Beberapa Titik Lokasi di Grobogan', 'Grobogan - Banjir terjadi beberapa lokasi di Kabupaten Grobogan, Jawa Tengah. Berikut ini titik lokasi yang dilanda banjir dan longsor.\r\n\r\n\"(Banjir) di Kecamatan Tawangharjo dengan desanya adalah Desa Jono dan Desa Mayahan,\" kata Kepala Badan Pendanggulangan Bencana Daerah(BPBD) Grobogan Endang Sulistyoningsih saat dimintai konfirmasi detikcom, Selasa (9/4/2019). \r\n\r\nSelain itu, banjir juga melanda Kecamatan Purwodadi tepatnya di Desa Kemasan, Jengglong, Kelurahan Purwodadi, dan Karanganyar.\r\n\r\nDampaknya jalan dan area persawahan terendam banjir. Dia menyimpulkan banjir terjadi karena luapan Sungai Lusi saat ini. Saat ini banjir sebagian besar sudah berangsur surut.\r\n\r\nDia juga membeberkan terjadi bencana tanah longsor hari ini. Bencana itu terjadi di Sungai Soca di Desa Crewek, Kecamatan Kradenan. \r\n\r\n\"Terdampak longsor di Crewek,\" kata dia.\r\n\r\nDengan rumah yang kena longsor ada lima rumah yakni milik Rujianto, Sarmin, Ngadimin, Jasmani, dan Padi di RT 6 RW 5. \r\n\r\nPihaknya akan melakukan penanganan darurat, di bantaran yang longsor yakni dengan memberi bronjong kawat.	\r\n(sip/sip)', '33', '3315', '3315110', '3315110003', 'bencana_default.png', '2019-07-02 12:11:46', NULL),
+(22, 'Kebakaran di Tanah Abang Padam, 66 Bangunan Hangus', 'Jakarta - Kebakaran di kawasan Pasar Tanah Abang, Jakarta Pusat, berhasil dipadamkan. Disebutkan, 66 unit bangunan hangus terbakar dalam peristiwa tersebut.\r\n\r\nKe-66 unit bangunan itu terdiri dari 26 rumah dan 40 toko. Saat ini, para pemilik toko dan sejumlah warga tampak berkumpul di sekitar lokasi kebakaran untuk mengamankan barang-barang yang tersisa dari lalapan api.\r\n\r\n\"Ada 66 bangunan yang terbakar, 26 di antaranya rumah, sisanya toko-toko,\" kata Camat Tanah Abang, Yasin Pasaribu saat ditemui di lokasi, Jl Jati Bunder Raya, Tanah Abang, Jakpus.\r\n\r\nYasin menyebutkan sumber api diduga akibat korsleting listrik dari salah satu toko. Api kemudian menjalar cepat.\r\n\r\n\"Dimulai dari salah satu toko karena korsleting,\" ujarnya.\r\n\r\nAkibat kebakaran, ada 2 orang yang mengalami luka-luka ringan. Mereka kini telah dibawa ke RS Pelni.\r\n\r\nApi diberitakan mulai menyala sekitar pukul 04.45 WIB. Api padam sekitar pukul 06.50 WIB. \r\n\r\nSebanyak 28 unit mobil pemadam kebakaran diturunkan ke lokasi. Saat ini, masih ada beberapa unit mobil damkar di lokasi untuk melakukan proses pendinginan.	', '31', '3173', '3173010', '3173010007', 'bencana_default.png', '2019-07-02 12:18:16', NULL),
+(23, 'Sebanyak 6.655 Korban Gempa Palu Masih Hidup di Tenda-tenda', 'Jakarta, CNN Indonesia -- Pemerintah Kota Palu, Sulawesi Tengah mencatat masih ada 6.655 jiwa pengungsi gempa dan likuefaksi Palu masih tinggal di tenda-tenda dan shelter pengungsian. Mereka yang belum tinggal di hunian sementara (huntara) tersebar di sejumlah lokasi.\r\n\r\nPemkot Palu menyebut jumlah unit huntara terbatas, baik huntara yang dibangun oleh Kementerian Pekerjaan Umum dan Perumahan Rakyat (PUPR) maupun oleh Non Government Organization (NGO).\r\n\r\n\"Hanya sekitar 4.468 KK (Kepala Keluarga) yang bisa ditampung,\" kata Ketua Tim Validasi Data yang juga Kepala Badan Perencanaan Pembangunan Daerah Kota Palu, Arfan, Minggu (26/5) dikutip dari Antara.\r\n\r\n\r\nDia mengaku belum tahu sampai kapan ribuan pengungsi yang tinggal di tenda dan shelter tersebut memiliki rumah. Adapun kondisi pengungsian, kata dia, saat ini sudah banyak yang rusak dan tidak layak pakai lagi ditempati.\r\n\r\nKementerian PUPR sebelumnya sudah memutuskan tidak akan menambah jumlah unit huntara yang dibangun dari 699 unit yang tersebar di Kota Palu, Kabupaten Sigi dan Donggala. Sebanyak 40.137 jiwa pengungsi di Palu, sebanyak 6.655 jiwa masih di tenda atau shelter dan sisanya sudah tinggal di huntara.\r\n\r\nNamun pemkot Palu berharap baik pemerintah pusat maupun NGO dapat memikirkan dan mencarikan jalan keluar untuk mengatasi persoalan tersebut.\r\n\r\nPersoalan lain yang saat ini dialami pengungsi lanjutnya adalah jaminan hidup (jadup) yang ditanggung oleh Kementerian Sosial yang hingga saat ini belum jelas. Ditambah lagi Kemensos hanya menanggung jadup pengungsi yang menempati huntara yang dibangun Kementerian PUPR.\r\n\r\n\"Bagaimana dengan pengungsi yang tinggal di selter dan tenda pengungsian? Bagaimana yang tinggal di huntara yang dibangun NGO? Kemarin Wali Kota Palu sudah menolak itu, meminta agar jadup dari Kemensos diberikan juga untuk pengungsi yang tinggal di shelter dan huntara bantuan NGO,\" ujarnya.\r\n\r\n', '72', '7271', '7271010', '3511141008', 'bencana_default.png', '2019-07-02 12:29:50', NULL),
+(26, 'Test', 'Lorem ipsum dolor sit amet', '11', '1114', '1114060', '1114060018', 'Test1562462720.png', '2019-07-07 01:25:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -7327,7 +7370,10 @@ CREATE TABLE `jenis_logistik` (
 
 INSERT INTO `jenis_logistik` (`id`, `nama`, `jenis`, `keterangan`) VALUES
 (1, 'Beras', 'Pangan', 'Lorem Ipsum dolor sit am'),
-(2, 'Minyak', 'Pangan', 'Lorem ipsum dolor sit amet\r\n');
+(2, 'Minyak', 'Pangan', 'Lorem ipsum dolor sit amet\r\n'),
+(3, 'Obat-obatan', 'Pangan', ''),
+(4, 'Sembako', 'Pangan', ''),
+(5, 'material bangunan', 'Papan', 'pasir, batu bata, semen, genteng, kayu, dll');
 
 -- --------------------------------------------------------
 
@@ -7372,7 +7418,20 @@ CREATE TABLE `korban_bencana` (
 INSERT INTO `korban_bencana` (`id`, `info_bencana_id`, `anak`, `laki`, `perempuan`) VALUES
 (1, 11, 202, 20, 20),
 (2, 12, 20, 20, 20),
-(3, 13, 32, 20, 23);
+(3, 13, 32, 20, 23),
+(4, 14, 875, 1250, 1643),
+(5, 15, 3, 2, 1),
+(6, 16, 50, 100, 150),
+(7, 17, 150, 257, 356),
+(8, 18, 120, 187, 244),
+(9, 19, 2, 1, 2),
+(10, 20, 4, 5, 6),
+(11, 21, 500, 1293, 1780),
+(12, 22, 70, 158, 270),
+(13, 23, 1508, 2187, 3073),
+(14, 24, 30, 30, 230),
+(15, 25, 232, 219, 201),
+(16, 26, 320, 200, 230);
 
 -- --------------------------------------------------------
 
@@ -7397,7 +7456,22 @@ INSERT INTO `logistik_bencana` (`id`, `info_bencana_id`, `jenis_logistik_id`, `j
 (9, 9, 2, 30),
 (10, 11, 1, 30),
 (11, 12, 1, 200),
-(12, 13, 2, 2000);
+(12, 13, 2, 2000),
+(14, 15, 5, 4),
+(15, 16, 5, 7),
+(16, 17, 1, 5000),
+(17, 18, 1, 1843),
+(18, 19, 5, 1),
+(19, 20, 4, 20),
+(20, 21, 1, 3000),
+(21, 22, 5, 66),
+(22, 23, 1, 6000),
+(23, 24, 3, 3943),
+(24, 25, 1, 232),
+(26, 26, 1, 3423),
+(28, 26, 1, 232),
+(29, 26, 1, 343),
+(30, 14, 1, 100);
 
 -- --------------------------------------------------------
 
@@ -8008,8 +8082,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `jenis_kelamin`, `alamat`, `no_hp`, `email`, `username`, `password`, `role`, `created_at`, `modified_at`, `foto`) VALUES
-(2, 'Teste3', 'Laki-laki', '12345678', '398432943829', 'tester@email.com', 'tester', '$2y$10$PC2D.tmZJd9AZBc8zXELtuCpVo8W2PqOM7yzH3OVeTHuV1GJaGv2e', 'Admin', '2019-05-18 04:22:50', NULL, 'profil_default.png'),
-(6, 'Fulan ', 'Laki-laki', 'Lorem ipsum dolor sit amet', '082343242', 'lorem@lorem.com', 'fulan1', '$2y$10$b0k7B2HWlrSiLSMo9aBZpOFAVyyyTNC295oEMpkFc00jO1qI.rBy.', 'User', '2019-06-17 05:57:51', NULL, 'profil_default.png');
+(10, 'User 1', 'Laki-laki', 'Lorem ipsum dolor sit amet', '0324320432', 'user@ijasa.test', 'user1', '$2y$10$cJlOfWMTsL1KpFDqh7Fnm.w4tVmMkShMWIZQUT5Hj6fyk48KBQHu6', 'User', '2019-07-06 12:42:29', NULL, 'profil_default.png'),
+(11, 'admin', 'Laki-laki', 'lorem', '0238432432', 'admin@admin.com', 'admin', '$2y$10$/gmMKy5BM2XcvjFBHfNWguMAGQSNkuOXS9JraSRZD3.RQSwrwGTL.', 'Admin', '2019-07-06 13:07:25', NULL, 'profil_default.png'),
+(12, 'Petugas', 'Laki-laki', 'lorem ipsum', '239483294', 'petugas@bnpb.com', 'petugas', '$2y$10$EkJOy9aYp5DJjeFStGen9OHxLlnEn7XqknrQAycsELefoLG4P1u8e', 'Petugas', '2019-07-06 13:08:41', NULL, 'profil_default.png');
 
 -- --------------------------------------------------------
 
@@ -50460,11 +50535,20 @@ INSERT INTO `villages` (`id`, `district_id`, `name`) VALUES
 ('3511141002', '3511141', 'PAGUAN'),
 ('3511141003', '3511141', 'SUMBERKOKAP'),
 ('3511141004', '3511141', 'TAMAN'),
-('3511141005', '3511141', 'GENTONG');
+('3511141005', '3511141', 'GENTONG'),
+('3511141006', '7203010', 'Menui'),
+('3511141007', '3671010', 'ciputat'),
+('3511141008', '7271010', 'PALU BARAT');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `aturan`
+--
+ALTER TABLE `aturan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `districts`
@@ -50554,20 +50638,25 @@ ALTER TABLE `villages`
 --
 
 --
+-- AUTO_INCREMENT for table `aturan`
+--
+ALTER TABLE `aturan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `donasi_logistik`
 --
 ALTER TABLE `donasi_logistik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `info_bencana`
 --
 ALTER TABLE `info_bencana`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `jenis_logistik`
 --
 ALTER TABLE `jenis_logistik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `jenis_logistik_donasi`
 --
@@ -50577,17 +50666,17 @@ ALTER TABLE `jenis_logistik_donasi`
 -- AUTO_INCREMENT for table `korban_bencana`
 --
 ALTER TABLE `korban_bencana`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `logistik_bencana`
 --
 ALTER TABLE `logistik_bencana`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --
@@ -50599,13 +50688,6 @@ ALTER TABLE `districts`
   ADD CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`);
 
 --
--- Constraints for table `donasi_logistik`
---
-ALTER TABLE `donasi_logistik`
-  ADD CONSTRAINT `info_bencana_id2` FOREIGN KEY (`info_bencana_id2`) REFERENCES `info_bencana` (`id`),
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Constraints for table `info_bencana`
 --
 ALTER TABLE `info_bencana`
@@ -50613,38 +50695,6 @@ ALTER TABLE `info_bencana`
   ADD CONSTRAINT `info_bencana_ibfk_2` FOREIGN KEY (`kecamatan_id`) REFERENCES `districts` (`id`),
   ADD CONSTRAINT `info_bencana_ibfk_3` FOREIGN KEY (`desa_id`) REFERENCES `villages` (`id`),
   ADD CONSTRAINT `provinsi_id` FOREIGN KEY (`provinsi_id`) REFERENCES `provinces` (`id`);
-
---
--- Constraints for table `jenis_logistik_donasi`
---
-ALTER TABLE `jenis_logistik_donasi`
-  ADD CONSTRAINT `jenis_logistik_donasi_ibfk_1` FOREIGN KEY (`jenis_logistik_id`) REFERENCES `jenis_logistik` (`id`),
-  ADD CONSTRAINT `jenis_logistik_donasi_ibfk_2` FOREIGN KEY (`donasi_logistik_id`) REFERENCES `donasi_logistik` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `korban_bencana`
---
-ALTER TABLE `korban_bencana`
-  ADD CONSTRAINT `korban_bencana_ibfk_1` FOREIGN KEY (`info_bencana_id`) REFERENCES `info_bencana` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `logistik_bencana`
---
-ALTER TABLE `logistik_bencana`
-  ADD CONSTRAINT `info_bencana_id` FOREIGN KEY (`info_bencana_id`) REFERENCES `info_bencana` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `jenis_logistik_id` FOREIGN KEY (`jenis_logistik_id`) REFERENCES `jenis_logistik` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `regencies`
---
-ALTER TABLE `regencies`
-  ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`);
-
---
--- Constraints for table `villages`
---
-ALTER TABLE `villages`
-  ADD CONSTRAINT `villages_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
