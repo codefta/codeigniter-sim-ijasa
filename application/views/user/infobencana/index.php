@@ -26,17 +26,56 @@
         </div>
         <div class="col-md-5 mb-4">
             <div class="row">
-                <div class="col-md-12" style="margin-bottom:20%;">
-                    <p style="font-size: 30px"><b>Yuk Bantu teman kita dengan mengirim logistik ke daerah terkena dampak bencana</b></p>
-                    <!-- <a href="#kebutuhanbencana" class="btn btn-info p-1">Lihat kebutuhan logistik bencana</a>  -->
+                <div class="col-md-12">
+                <h5><b>Kebutuhan Bencana</b></h5><br>
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Nama Kebutuhan</th>
+                            <th>Jenis Kebutuhan</th>
+                            <th>Jumlah Kebutuhan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($logistikbencana as $item) : ?>
+                        <tr>
+                            <td><?= $item['nama_logistik'] ?></td>
+                            <td><?= $item['jenis_logistik'] ?></td>
+                            <td><?= $item['jumlah'].' kg/liter' ?></td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
                 </div>
+                <?php if(!empty($prioritas)) : ?>
+                <div class="col-md-12" style="">
+                <h5><b>Prioritas Kebutuhan Bencana</b></h5><br>
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Nama Kebutuhan</th>
+                            <th>Prioritas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($prioritas as $item) : ?>
+                        <tr>
+                            <td><?= $item['jenis_logistik'] ?></td>
+                            <td><?= $item['hasil'] > 50 ? 'Tinggi' : 'Rendah' ?></td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+                </div>
+
+                <?php endif ?>
                 <div class="col-md-12 mb-3">
                     <div class="row">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <a href="#kebutuhanBencana" class="btn btn-info p-3 js-scroll-trigger">Lihat kebutuhan</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="<?= base_url('donasi/detail/').$infobencana['id'] ?>" class="btn btn-success p-3">Donasi Sekarang</a>
+                        </div> -->
+                        <div class="col-md-12">
+                            <a href="<?= base_url('donasi/detail/').$infobencana['id'] ?>" class="btn btn-success p-3 w-100">Donasi Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +116,7 @@
                 </div>
             </div>
         </div>
-
+<!-- 
         <div class="col-md-12 mb-3" id="kebutuhanBencana">
             <div class="card shadow border-0">
             <div class="card-body">
@@ -102,7 +141,7 @@
                 </table>
             </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- <div class="col-md-12">
              <div class="float-left">

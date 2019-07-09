@@ -5,7 +5,7 @@ class Donasi_logistik extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model(["donasi_logistik_model", 'infobencana_model', 'jenis_logistik_model']);
+        $this->load->model(["donasi_logistik_model", 'infobencana_model', 'jenis_logistik_model', 'logistik_bencana_model']);
         
         if(!$this->session->has_userdata('user_loggedin')) {
             redirect(base_url('login'));
@@ -15,6 +15,7 @@ class Donasi_logistik extends CI_Controller {
     function show($id) {
         $data['logistik'] = $this->jenis_logistik_model->get_jenis();
         $data['infobencana'] = $this->infobencana_model->get_infobencana_id($id);
+        $data['logistikbencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
         $this->load->view('user/donasi_logistik/index', $data);
     }
 

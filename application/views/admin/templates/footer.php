@@ -8,7 +8,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SIM - IJASA, 2018-2019</span>
+          Copyright &copy; Ijasa, 2018 - 2019 made with <span class="text-danger">&hearts;</span> by OutLine
           </div>
         </div>
       </footer>

@@ -1,4 +1,4 @@
-  <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center mt-3" href="index.html">
@@ -34,6 +34,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <!-- <h6 class="collapse-header">Custom Components:</h6> -->
               <a class="collapse-item <?php if(current_url() == base_url('admin/spk/prioritas') ) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas') ?>">Penghitungan</a>
+              <a class="collapse-item <?php if(current_url() == base_url('admin/spk/prioritas/hasil_prioritas') ) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas/hasil_prioritas') ?>">Hasil Penghitungan</a>
               <a class="collapse-item <?php if(current_url() == base_url('admin/spk/prioritas/domain') ) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas/domain') ?>">Domain</a>
               <a class="collapse-item <?php if((current_url() == base_url('admin/spk/prioritas/aturan')) || (current_url() == base_url('admin/spk/prioritas/tambah_aturan'))) echo 'active' ?>" href="<?= base_url('admin/spk/prioritas/aturan') ?>">Aturan</a>
             </div>
@@ -52,6 +53,7 @@
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+              <a class="collapse-item <?php if(current_url() == base_url('admin/statistik/kebutuhan_terpenuhi') ) echo 'active' ?>" href="<?= base_url('admin/statistik/kebutuhan_terpenuhi') ?>">Laporan Kebutuhan <br>Terpenuhi</a>
               <a class="collapse-item <?php if(current_url() == base_url('admin/statistik/donatur') ) echo 'active' ?>" href="<?= base_url('admin/statistik/donatur') ?>">Laporan Donatur</a>
               <a class="collapse-item <?php if($this->uri->segment(3) == 'donasi' ) echo 'active' ?>" href="<?= base_url('admin/statistik/donasi') ?>">Laporan Donasi</a>
               <a class="collapse-item <?php if(current_url() == base_url('admin/statistik/kebutuhan') ) echo 'active' ?>" href="<?= base_url('admin/statistik/kebutuhan') ?>">Laporan Kebutuhan</a>

@@ -7,7 +7,7 @@ class Infobencana extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(['lokasi_model', 'jenis_logistik_model', 'infobencana_model', 'logistik_bencana_model', 'korban_bencana_model']);
+        $this->load->model(['lokasi_model', 'jenis_logistik_model', 'infobencana_model', 'logistik_bencana_model', 'korban_bencana_model', 'spk/prioritas_model']);
 
         if(!$this->session->has_userdata('admin_loggedin')) {
             redirect(base_url('admin/login'));
@@ -24,6 +24,7 @@ class Infobencana extends CI_Controller {
     public function kebutuhan_bencana($id) {
         $data['title'] = 'Info Bencana / Kebutuhan Bencana';
         $data['infobencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
+        $data['prioritas'] = $this->prioritas_model->get_prioritas_by($id);
         $this->load->view('admin/infobencana/kebutuhan_bencana', $data);
     }
 

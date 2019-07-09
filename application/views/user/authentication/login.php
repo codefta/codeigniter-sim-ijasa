@@ -8,8 +8,15 @@
   <!-- Header section -->
 
   <!-- Projects Section -->
+  
+
   <section id="infobencana" class="projects-section pt-5 mt-5" style="background-color: #f5f6fa">
     <div class="container">
+      <?php if($this->session->flashdata("users_notif")) : ?>
+        <div class="text-center mb-3">
+          <?= $this->session->flashdata("users_notif") ?>
+        </div>
+      <?php endif ?>
       <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card shadow-sm border-0">

@@ -13,7 +13,27 @@
             <div class="card shadow border-0">
                 <div class="card-body">
                     <p class="text-center">Anda berdonasi untuk:</p>
-                    <h4 class="text-center"><b><?= $infobencana['nama'] ?></b></h4>
+                    <h4 class="text-center mb-3"><b><?= $infobencana['nama'] ?></b></h4>
+                    <hr>
+                    <h5 class="text-center"><b>Kebutuhan Bencana</b></h5>
+                      <table class="table table-stripped">
+                          <thead>
+                              <tr>
+                                  <th>Nama Kebutuhan</th>
+                                  <th>Jenis Kebutuhan</th>
+                                  <th>Jumlah Kebutuhan</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <?php foreach($logistikbencana as $item) : ?>
+                              <tr>
+                                  <td><?= $item['nama_logistik'] ?></td>
+                                  <td><?= $item['jenis_logistik'] ?></td>
+                                  <td><?= $item['jumlah'].' kg/liter' ?></td>
+                              </tr>
+                              <?php endforeach ?>
+                          </tbody>
+                      </table>
                 </div>
             </div>
         </div>

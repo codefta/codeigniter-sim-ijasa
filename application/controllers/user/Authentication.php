@@ -33,13 +33,15 @@ class Authentication extends CI_Controller {
                 $this->session->set_userdata('user_loggedin', $login);
                 redirect(base_url());
             } else {
-                redirect(base_url('authentication'));
+                $this->session->set_flashdata('users_notif', '<span class="alert alert-danger">Username/Password anda salah</span>');
+                redirect(base_url('user/authentication/login'));
             }
         }
     }
 
     function logout() {
         $this->session->unset_userdata('user_loggedin');
+        $this->session->set_flashdata('users_notif', '<span class="alert alert-success">Anda berhasil logout</span>');
 
         redirect(base_url('login'));
     }
@@ -76,10 +78,10 @@ class Authentication extends CI_Controller {
             $store = $this->users_model->insert_users($data);
 
             if($store) {
-                $this->session->set_flashdata('users_notif', 'Anda berhasil menambah akun baru');
+                $this->session->set_flashdata('users_notif', '<span class="alert alert-success">Anda berhasil mendaftar</span>');
                 redirect(base_url('login'));
             } else {
-                $this->session->set_flashdata('users_notif', 'Anda gagal menambah akun baru');
+                $this->session->set_flashdata('users_notif', '<span class="alert alert-danger">Anda berhasil mendaftar</span>');
                 redirect(base_url('login'));
             }
         }

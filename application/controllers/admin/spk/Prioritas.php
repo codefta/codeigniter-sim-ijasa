@@ -108,6 +108,17 @@ class Prioritas extends CI_Controller {
                 'perempuan' => $perempuan,
             ];
 
+            $data_spk = [
+                'info_bencana_id' => $id_bencana,
+                'jenis_logistik_id' => $id_logistik,
+                'hasil' => round($defuzzy_result, 2)
+            ];
+
+            $save_data = $this->prioritas_model->save_spk($data_spk);
+
+            // var_dump($save_data);
+            // die();
+
             $data['rule_fuzzy'] = $result_rule;
             $data['prioritas'] = $result_prioritas;
             $data['defuzzy'] = round($defuzzy_result, 2);
@@ -242,4 +253,47 @@ class Prioritas extends CI_Controller {
             return $tinggi_var = 0;
         }
     }
+
+    public function hasil_prioritas() {
+        $data['hasil_prioritas'] = $this->prioritas_model->get_hasil_spk();
+        $data['title'] = 'Pendukung Keputusan / Hasil Penghitungan';
+        $this->load->view('admin/spk/hasil', $data);
+    }
+
+    public function tampilkan_prioritas($id) {
+        $save = $this->prioritas_model->change_status_prioritas_by($id);
+
+        if($save) {
+            $this->session->set_flashdata("prioritas_notif", "<span class='alert alert-success'> Anda berhasil menampilkan data prioritas</span>");
+            redirect(base_url("admin/spk/prioritas/hasil_prioritas"));
+        } else {
+            $this->session->set_flashdata("prioritas_notif", "<span class='alert alert-danger'> Anda gagal menampilkan data prioritas</span>");
+            redirect(base_url("admin/spk/prioritas/hasil_prioritas"));
+        }
+    }
+
+    public function sembunyikan_prioritas($id) {
+        $save = $this->prioritas_model->hide_status_prioritas_by($id);
+
+        if($save) {
+            $this->session->set_flashdata("prioritas_notif", "<span class='alert alert-success'> Anda berhasil menyembunyikan data prioritas</span>");
+            redirect(base_url("admin/spk/prioritas/hasil_prioritas"));
+        } else {
+            $this->session->set_flashdata("prioritas_notif", "<span class='alert alert-danger'> Anda gagal menyembunyikan data prioritas</span>");
+            redirect(base_url("admin/spk/prioritas/hasil_prioritas"));
+        }
+    }
+
+    public function hapus_prioritas($id) {
+        $save = $this->prioritas_model->delete_prioritas($id);
+
+        if($save) {
+            $this->session->set_flashdata("prioritas_notif", "<span class='alert alert-success'> Anda berhasil menghapus data prioritas</span>");
+            redirect(base_url("admin/spk/prioritas/hasil_prioritas"));
+        } else {
+            $this->session->set_flashdata("prioritas_notif", "<span class='alert alert-danger'> Anda gagal menghapus data prioritas</span>");
+            redirect(base_url("admin/spk/prioritas/hasil_prioritas"));
+        }   
+    }
+
 }
