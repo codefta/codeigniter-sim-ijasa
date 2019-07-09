@@ -24,7 +24,7 @@ class Infobencana extends CI_Controller {
     public function kebutuhan_bencana($id) {
         $data['title'] = 'Info Bencana / Kebutuhan Bencana';
         $data['infobencana'] = $this->logistik_bencana_model->get_logistik_bencana_id($id);
-        $data['prioritas'] = $this->prioritas_model->get_prioritas_by($id);
+        
         $this->load->view('admin/infobencana/kebutuhan_bencana', $data);
     }
 
